@@ -26,14 +26,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--fb);font-weight:30
 /* PRELOADER */
 #pre{position:fixed;inset:0;background:#0A0A0A;z-index:1000;display:flex;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s}
 #pre.gone{opacity:0;visibility:hidden;pointer-events:none}
-.pre-inner{overflow:hidden}
-.pre-text{font-family:var(--fd);font-size:clamp(2.5rem,8vw,6rem);letter-spacing:.4em;color:var(--white);display:flex;gap:0}
-.pre-text span{display:inline-block;transform:translateY(110%);animation:preUp .9s cubic-bezier(.16,1,.3,1) forwards}
-.pre-text span:nth-child(1){animation-delay:.05s}.pre-text span:nth-child(2){animation-delay:.1s}
-.pre-text span:nth-child(3){animation-delay:.15s}.pre-text span:nth-child(4){animation-delay:.2s}
-.pre-text span:nth-child(5){animation-delay:.25s}.pre-text span:nth-child(6){animation-delay:.3s}
-.pre-text span:nth-child(7){animation-delay:.35s}.pre-text span:nth-child(8){animation-delay:.4s}
-.pre-text span:nth-child(9){animation-delay:.45s}
+.pre-inner{display:flex;align-items:center;justify-content:center}
+.pre-logo{width:clamp(180px,40vw,280px);height:clamp(180px,40vw,280px);border-radius:50%;object-fit:cover;opacity:0;animation:preLogoIn 1s cubic-bezier(.34,1.56,.64,1) .1s forwards}
+@keyframes preLogoIn{0%{opacity:0;transform:scale(.6)}100%{opacity:1;transform:scale(1)}}
 @keyframes preUp{to{transform:translateY(0)}}
 
 /* NAV */
@@ -225,9 +220,7 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
 <!-- PRELOADER -->
 <div id="pre">
   <div class="pre-inner">
-    <div class="pre-text">
-      <span>C</span><span>R</span><span>O</span><span>W</span><span>N</span><span>&thinsp;</span><span>C</span><span>U</span><span>T</span>
-    </div>
+    <img src="images/logo-main.jpg" alt="Crown Cut Barbers" class="pre-logo">
   </div>
 </div>
 
