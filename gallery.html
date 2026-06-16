@@ -62,10 +62,10 @@ nav.scrolled{padding:1.1rem 4rem;background:rgba(10,10,10,.92);backdrop-filter:b
 
 /* GALLERY GRID */
 .gallery-section{padding:4rem}
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:transparent}
-.gallery-item{background:var(--bg3);position:relative;overflow:hidden;cursor:pointer}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;background:transparent}
+.gallery-item{background:var(--bg3);position:relative;overflow:hidden;cursor:pointer;border-radius:14px}
 .gallery-item:nth-child(1){grid-column:span 2}
-.gallery-inner{width:100%;height:100%;min-height:400px;position:relative;overflow:hidden}
+.gallery-inner{width:100%;height:100%;min-height:400px;position:relative;overflow:hidden;border-radius:14px}
 .gallery-item:nth-child(1) .gallery-inner{min-height:600px}
 .gallery-img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .95s cubic-bezier(.16,1,.3,1),filter .95s ease}
 .gallery-item:hover .gallery-img{transform:scale(1.12);filter:brightness(1.06)}
