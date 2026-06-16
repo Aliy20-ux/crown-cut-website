@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="3840" height="3840">
+
+  <!-- White background circle -->
+  <circle cx="500" cy="500" r="492" fill="#FFFFFF"/>
+
+  <!-- Outer border ring -->
+  <circle cx="500" cy="500" r="478" fill="none" stroke="#0D0D0D" stroke-width="28"/>
+
+  <!-- Inner border ring -->
+  <circle cx="500" cy="500" r="442" fill="none" stroke="#0D0D0D" stroke-width="8"/>
+
+  <!-- ═══ CROWN ═══ -->
+  <!-- Crown silhouette: 5-spike with concave base -->
+  <path d="
+    M 190 398
+    L 190 322
+    L 264 358
+    L 346 272
+    L 422 344
+    L 500 192
+    L 578 344
+    L 654 272
+    L 736 358
+    L 810 322
+    L 810 398
+    Z
+  " fill="#0D0D0D"/>
+
+  <!-- Crown base band -->
+  <rect x="190" y="390" width="620" height="40" rx="4" fill="#0D0D0D"/>
+
+  <!-- Spike tip spheres -->
+  <circle cx="190" cy="322" r="14" fill="#0D0D0D"/>
+  <circle cx="346" cy="272" r="18" fill="#0D0D0D"/>
+  <circle cx="500" cy="192" r="22" fill="#0D0D0D"/>
+  <circle cx="654" cy="272" r="18" fill="#0D0D0D"/>
+  <circle cx="810" cy="322" r="14" fill="#0D0D0D"/>
+
+  <!-- ═══ TYPOGRAPHY ═══ -->
+
+  <!-- "Crown Cut" — elegant tracking -->
+  <text
+    x="500" y="510"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="86"
+    font-weight="400"
+    letter-spacing="10"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    fill="#0D0D0D">Crown Cut</text>
+
+  <!-- Thin rule between lines -->
+  <line x1="310" y1="560" x2="690" y2="560" stroke="#0D0D0D" stroke-width="2" opacity="0.25"/>
+
+  <!-- "Barbers" — bold, commanding -->
+  <text
+    x="500" y="665"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="138"
+    font-weight="700"
+    letter-spacing="6"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    fill="#0D0D0D">Barbers</text>
+
+</svg>
