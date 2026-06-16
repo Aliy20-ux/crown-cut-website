@@ -285,6 +285,12 @@ async function init() {
     services = await r.json();
     renderServices('all');
     renderCatFilters();
+    // Pre-select service if ?sid=N passed (from pricing page)
+    const sid = parseInt(new URLSearchParams(window.location.search).get('sid'));
+    if (sid) {
+      const match = services.find(s => s.id === sid);
+      if (match) selectService(match.id);
+    }
   } catch (e) {
     document.getElementById('servicesGrid').innerHTML =
       '<p style="font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;padding:2rem">Could not load services. Please refresh or call 0131 629 7377.</p>';
