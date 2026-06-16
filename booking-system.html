@@ -4,306 +4,544 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book an Appointment — Crown Cut Edinburgh</title>
-<meta name="description" content="Book your appointment at Crown Cut Edinburgh online. Real-time availability, instant confirmation.">
+<meta name="description" content="Book your appointment at Crown Cut Edinburgh. Real-time availability, instant confirmation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0A0A0A;--bg2:#111111;--bg3:#191919;--bg4:#1E1E1E;
   --border:#222222;--border2:#2E2E2E;
   --text:#E8E8E4;--text2:#888888;--text3:#555555;
-  --white:#F6F6F2;--g100:#DDDDD8;--g200:#ABABAB;--g600:#555555;--g800:#282828;
+  --white:#F6F6F2;--g100:#DDDDD8;--g200:#ABABAB;
   --fd:'Bebas Neue','Arial Narrow',sans-serif;
   --fs:'Cormorant Garamond',Georgia,serif;
   --fb:'Inter',system-ui,sans-serif;
   --fm:'DM Mono','Courier New',monospace;
 }
-html{scroll-behavior:smooth;font-size:16px}
+html{font-size:16px;height:100%}
 body{background:var(--bg);color:var(--text);font-family:var(--fb);font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:padding .4s,background .4s;border-bottom:1px solid transparent;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);border-color:var(--border)}
-.nav-logo{text-decoration:none;display:flex;flex-direction:column;gap:9px}
-.nav-logo-img{height:52px;width:52px;display:block;border-radius:50%;object-fit:cover;opacity:0}
-@keyframes logoReveal{0%{opacity:0;transform:scale(.5) rotate(-18deg)}70%{transform:scale(1.08) rotate(3deg)}100%{opacity:1;transform:scale(1) rotate(0)}}
-.nav-logo-img{animation:logoReveal 1s cubic-bezier(.34,1.56,.64,1) .25s both}
-.nav-logo-sub{font-family:var(--fm);font-size:.55rem;letter-spacing:.35em;color:var(--text3);text-transform:uppercase}
-.nav-back{font-family:var(--fm);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text2);text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:color .2s}
-.nav-back:hover{color:var(--white)}
-
 /* PROGRESS */
-.progress-bar{position:fixed;top:0;left:0;right:0;height:2px;background:var(--border);z-index:200}
-.progress-fill{height:100%;background:var(--white);transition:width .4s cubic-bezier(.16,1,.3,1)}
-.step-header{padding:7rem 4rem 2rem;border-bottom:1px solid var(--border)}
-.step-indicator{font-family:var(--fm);font-size:.58rem;letter-spacing:.35em;color:var(--text3);text-transform:uppercase;margin-bottom:.8rem}
-.step-title{font-family:var(--fd);font-size:clamp(3rem,8vw,7rem);line-height:.9;color:var(--white)}
-.step-title em{font-family:var(--fs);font-style:italic;color:var(--g200)}
+.prog-track{position:fixed;top:0;left:0;right:0;height:2px;background:var(--border);z-index:999}
+.prog-fill{height:100%;background:var(--white);transition:width .6s cubic-bezier(.16,1,.3,1);width:25%}
 
-/* CONTENT */
-.step-content{padding:3rem 4rem 6rem;max-width:1100px}
-.step-panel{display:none}
-.step-panel.active{display:block}
+/* ── LAYOUT ── */
+.bk-wrap{display:grid;grid-template-columns:350px 1fr;min-height:100vh}
 
-/* SERVICE SELECTION */
-.service-cats{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.cat-btn{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);background:none;border:1px solid var(--border);padding:.45rem 1rem;cursor:pointer;transition:border-color .2s,color .2s}
-.cat-btn:hover,.cat-btn.active{border-color:var(--white);color:var(--white)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
-.service-card{background:var(--bg);padding:1.8rem;cursor:pointer;transition:background .2s;position:relative;border:2px solid transparent}
-.service-card:hover{background:var(--bg2)}
-.service-card.selected{background:var(--bg2);border-color:var(--white)}
-.service-card.hidden{display:none}
-.sc-cat{font-family:var(--fm);font-size:.5rem;letter-spacing:.28em;color:var(--text3);text-transform:uppercase;margin-bottom:.5rem}
-.sc-name{font-family:var(--fd);font-size:1.3rem;letter-spacing:.06em;color:var(--white);line-height:1;margin-bottom:.4rem}
-.sc-dur{font-family:var(--fm);font-size:.5rem;letter-spacing:.18em;color:var(--text3);text-transform:uppercase}
-.sc-price{font-family:var(--fs);font-size:1.1rem;font-style:italic;color:var(--g200);margin-top:.8rem}
-.sc-check{position:absolute;top:1rem;right:1rem;width:20px;height:20px;border:1px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
-.service-card.selected .sc-check{background:var(--white);border-color:var(--white)}
-.sc-check::after{content:'✓';font-size:10px;color:var(--bg);opacity:0;transition:opacity .15s}
-.service-card.selected .sc-check::after{opacity:1}
+/* ── SIDEBAR ── */
+.sidebar{
+  position:sticky;top:0;height:100vh;
+  background:var(--bg2);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;overflow:hidden;z-index:10
+}
 
-/* DATE/TIME */
-.datetime-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-.dt-label{font-family:var(--fm);font-size:.58rem;letter-spacing:.35em;color:var(--text3);text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.8rem}
-.dt-label::before{content:'';display:block;width:20px;height:1px;background:var(--text3)}
-input[type="date"]{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--text);font-family:var(--fm);font-size:.75rem;padding:1rem 1.2rem;letter-spacing:.05em;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none;color-scheme:dark}
+.sb-top{
+  padding:2rem 2.2rem 1.6rem;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0
+}
+.sb-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none}
+.sb-logo-img{height:38px;width:38px;border-radius:50%;object-fit:cover;animation:logoIn .9s cubic-bezier(.34,1.56,.64,1) .2s both}
+@keyframes logoIn{from{opacity:0;transform:scale(.4) rotate(-20deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.sb-brand{display:flex;flex-direction:column;gap:2px}
+.sb-brand-name{font-family:var(--fd);font-size:1.1rem;letter-spacing:.14em;color:var(--white);line-height:1}
+.sb-brand-sub{font-family:var(--fm);font-size:.42rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text3)}
+.sb-back{font-family:var(--fm);font-size:.5rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s;white-space:nowrap}
+.sb-back:hover{color:var(--text2)}
+
+/* Step tracker */
+.sb-steps{padding:1.4rem 2.2rem;border-bottom:1px solid var(--border);flex-shrink:0}
+.sb-step-row{display:flex;align-items:center;gap:.8rem;padding:.38rem 0;cursor:default}
+.sb-step-dot{
+  width:7px;height:7px;border-radius:50%;flex-shrink:0;
+  border:1px solid var(--border2);
+  transition:background .35s,border-color .35s,transform .35s
+}
+.sb-step-label{font-family:var(--fm);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);transition:color .3s}
+.sb-step-row.active .sb-step-dot{background:var(--white);border-color:var(--white);transform:scale(1.3)}
+.sb-step-row.active .sb-step-label{color:var(--white)}
+.sb-step-row.done .sb-step-dot{background:var(--text3);border-color:var(--text3)}
+
+/* Title area */
+.sb-mid{flex:1;padding:2rem 2.2rem 1.5rem;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden}
+.sb-eyebrow{font-family:var(--fm);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;display:flex;align-items:center;gap:.7rem}
+.sb-eyebrow::before{content:'';display:block;width:16px;height:1px;background:var(--text3)}
+.sb-title{font-family:var(--fd);font-size:clamp(2.4rem,3.5vw,3.5rem);line-height:.88;color:var(--white);transition:opacity .3s}
+.sb-title em{font-family:var(--fs);font-style:italic;color:var(--g200)}
+
+/* Live booking summary */
+.sb-sum{margin-top:auto;padding-top:1.5rem}
+.sb-sum-lbl{font-family:var(--fm);font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;color:var(--text3);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.sb-sum-lbl::before{content:'';display:block;width:12px;height:1px;background:var(--text3)}
+.sb-sum-row{
+  padding:.55rem 0;border-top:1px solid var(--border);
+  display:none;flex-direction:column;gap:.2rem;
+  opacity:0;transform:translateY(5px);transition:opacity .3s,transform .3s
+}
+.sb-sum-row.vis{opacity:1;transform:translateY(0)}
+.sb-sum-key{font-family:var(--fm);font-size:.44rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3)}
+.sb-sum-val{font-family:var(--fm);font-size:.65rem;letter-spacing:.04em;color:var(--text)}
+.sb-sum-price{font-family:var(--fd);font-size:2rem;letter-spacing:.08em;color:var(--white);margin-top:.3rem}
+
+/* Address */
+.sb-bot{padding:1.3rem 2.2rem;border-top:1px solid var(--border);flex-shrink:0}
+.sb-addr{font-family:var(--fm);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);line-height:2.2}
+
+/* ── MAIN CONTENT ── */
+.bk-main{display:flex;flex-direction:column;min-height:100vh}
+.step-panel{display:none;flex:1;flex-direction:column}
+.step-panel.active{display:flex}
+
+/* CATEGORY FILTER */
+.cat-bar{display:flex;border-bottom:1px solid var(--border);background:var(--bg);overflow-x:auto}
+.cat-bar::-webkit-scrollbar{display:none}
+.cat-btn{
+  font-family:var(--fm);font-size:.48rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--text3);background:none;border:none;border-bottom:2px solid transparent;
+  padding:.85rem 1.6rem;cursor:pointer;transition:color .2s,border-color .2s;
+  white-space:nowrap;margin-bottom:-1px;flex-shrink:0
+}
+.cat-btn:hover{color:var(--text2)}
+.cat-btn.active{color:var(--white);border-bottom-color:var(--white)}
+
+/* SERVICE ROWS */
+.svc-list{flex:1}
+.svc-row{
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  padding:1.2rem 3.5rem;border-bottom:1px solid var(--border);cursor:pointer;
+  transition:padding-left .3s cubic-bezier(.16,1,.3,1),background .25s;
+  position:relative;overflow:hidden
+}
+.svc-row::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--white);transform:scaleY(0);transform-origin:bottom;
+  transition:transform .3s cubic-bezier(.16,1,.3,1)
+}
+.svc-row:hover{padding-left:4rem;background:rgba(246,246,242,.02)}
+.svc-row:hover::before,.svc-row.selected::before{transform:scaleY(1)}
+.svc-row.selected{padding-left:4rem;background:rgba(246,246,242,.03)}
+.svc-row.hidden{display:none}
+.sr-left{min-width:0}
+.sr-cat{font-family:var(--fm);font-size:.44rem;letter-spacing:.24em;text-transform:uppercase;color:var(--text3);margin-bottom:.3rem}
+.sr-name{font-family:var(--fd);font-size:1.55rem;letter-spacing:.07em;color:var(--white);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sr-right{display:flex;align-items:center;gap:2rem;flex-shrink:0}
+.sr-dur{font-family:var(--fm);font-size:.46rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+.sr-price{font-family:var(--fs);font-size:1.5rem;font-style:italic;color:var(--text2);white-space:nowrap}
+.sr-check{
+  width:26px;height:26px;border-radius:50%;border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:background .2s,border-color .2s,transform .25s
+}
+.svc-row.selected .sr-check{background:var(--white);border-color:var(--white);transform:scale(1.12)}
+.sr-chk{font-size:10px;color:var(--bg);opacity:0;transition:opacity .15s}
+.svc-row.selected .sr-chk{opacity:1}
+
+/* ── STEP 2: DATE & TIME ── */
+.dt-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;padding:3.5rem 3.5rem;align-items:start}
+.dt-label{font-family:var(--fm);font-size:.52rem;letter-spacing:.35em;text-transform:uppercase;color:var(--text2);margin-bottom:1.5rem;display:flex;align-items:center;gap:.7rem}
+.dt-label::before{content:'';display:block;width:18px;height:1px;background:var(--text2)}
+input[type="date"]{
+  width:100%;background:none;border:none;border-bottom:1px solid var(--border2);
+  color:var(--white);font-family:var(--fd);font-size:2rem;letter-spacing:.1em;
+  padding:.4rem 0;outline:none;transition:border-color .2s;
+  -webkit-appearance:none;appearance:none;color-scheme:dark;cursor:pointer;display:block
+}
 input[type="date"]:focus{border-color:var(--white)}
-.time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:.5rem}
-.time-slot{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;color:var(--text2);background:var(--bg2);border:1px solid var(--border);padding:.65rem .4rem;text-align:center;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
-.time-slot:hover{border-color:var(--text2);color:var(--text)}
-.time-slot.selected{border-color:var(--white);color:var(--white);background:var(--bg3)}
-.no-slots{font-family:var(--fm);font-size:.62rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;padding:1.5rem 0}
+input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.35;cursor:pointer;margin-left:.5rem}
+.hours-note{font-family:var(--fm);font-size:.44rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:1.2rem;line-height:2.3}
 
-/* DETAILS FORM */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
-.form-group{display:flex;flex-direction:column;gap:.6rem}
+.slot-group{margin-bottom:2rem}
+.slot-group-lbl{font-family:var(--fm);font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text3);padding-bottom:.6rem;border-bottom:1px solid var(--border);margin-bottom:.8rem}
+.slots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.t-slot{
+  font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;
+  color:var(--text2);background:none;border:1px solid var(--border);
+  padding:.75rem .4rem;text-align:center;cursor:pointer;
+  transition:border-color .2s,color .2s,background .2s
+}
+.t-slot:hover{border-color:var(--text2);color:var(--text)}
+.t-slot.selected{border-color:var(--white);color:var(--white);background:rgba(246,246,242,.05)}
+.no-slots{font-family:var(--fm);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);padding:1.5rem 0}
+
+/* ── STEP 3: DETAILS ── */
+.step3-inner{padding:3.5rem 3.5rem;flex:1;display:flex;flex-direction:column}
+.bk-sum-box{background:var(--bg2);border:1px solid var(--border);padding:2rem;margin-bottom:3rem}
+.bsb-hdr{font-family:var(--fm);font-size:.48rem;letter-spacing:.38em;text-transform:uppercase;color:var(--text3);margin-bottom:1.4rem;display:flex;align-items:center;gap:.6rem}
+.bsb-hdr::before{content:'';display:block;width:14px;height:1px;background:var(--text3)}
+.bsb-row{display:flex;justify-content:space-between;align-items:baseline;padding:.65rem 0;border-bottom:1px solid var(--border)}
+.bsb-row:last-child{border-bottom:none}
+.bsb-k{font-family:var(--fm);font-size:.46rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text3)}
+.bsb-v{font-family:var(--fm);font-size:.6rem;letter-spacing:.05em;color:var(--text)}
+.bsb-price{font-family:var(--fd);font-size:2rem;letter-spacing:.08em;color:var(--white)}
+
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 4rem}
+.form-group{padding-bottom:0;margin-bottom:2.2rem}
 .form-group.full{grid-column:span 2}
-.form-label{font-family:var(--fm);font-size:.55rem;letter-spacing:.3em;color:var(--text3);text-transform:uppercase}
-.form-input{background:var(--bg2);border:1px solid var(--border2);color:var(--text);font-family:var(--fb);font-size:.875rem;font-weight:300;padding:.95rem 1.1rem;outline:none;transition:border-color .2s;width:100%}
+.form-lbl{font-family:var(--fm);font-size:.46rem;letter-spacing:.28em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:.7rem}
+.form-input{
+  width:100%;background:none;border:none;border-bottom:1px solid var(--border2);
+  color:var(--white);font-family:var(--fs);font-size:1.25rem;font-style:italic;font-weight:300;
+  padding:.4rem 0;outline:none;transition:border-color .2s,color .2s;display:block
+}
 .form-input:focus{border-color:var(--white)}
 .form-input::placeholder{color:var(--text3)}
-textarea.form-input{resize:vertical;min-height:80px}
-.booking-summary{background:var(--bg2);border:1px solid var(--border);padding:2rem;margin-bottom:2rem}
-.bs-label{font-family:var(--fm);font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--text3);margin-bottom:1.2rem}
-.bs-row{display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:1px solid var(--border)}
-.bs-row:last-child{border-bottom:none}
-.bs-key{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;color:var(--text3);text-transform:uppercase}
-.bs-val{font-family:var(--fm);font-size:.65rem;letter-spacing:.08em;color:var(--text)}
-.bs-price{font-family:var(--fd);font-size:1.8rem;color:var(--white)}
+.form-note{font-family:var(--fm);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-top:1.5rem}
 
-/* CONFIRMED */
-.confirmed-wrap{text-align:center;padding:3rem 0}
-.confirmed-icon{width:64px;height:64px;border:2px solid var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;font-size:24px}
-.confirmed-ref{font-family:var(--fd);font-size:clamp(3rem,8vw,6rem);letter-spacing:.15em;color:var(--white);margin:1rem 0}
-.confirmed-detail{background:var(--bg2);border:1px solid var(--border);padding:2rem;text-align:left;margin:2rem auto;max-width:480px}
-.cd-row{display:flex;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid var(--border)}
+/* ── STEP 4: CONFIRMED ── */
+.conf-wrap{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:4rem 4rem;text-align:center
+}
+.conf-badge{
+  width:68px;height:68px;border-radius:50%;border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1.8rem;
+  animation:badgeIn .7s cubic-bezier(.34,1.56,.64,1) .15s both
+}
+@keyframes badgeIn{from{opacity:0;transform:scale(0) rotate(-20deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+.conf-tick{font-size:22px;color:var(--white)}
+.conf-eye{font-family:var(--fm);font-size:.5rem;letter-spacing:.42em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem;animation:fadeUp .5s ease .4s both}
+.conf-ref{font-family:var(--fd);font-size:clamp(3.5rem,8vw,6.5rem);letter-spacing:.18em;color:var(--white);line-height:1;margin:.2rem 0 1.2rem;animation:fadeUp .5s ease .5s both}
+.conf-sub{font-family:var(--fs);font-size:1.15rem;font-style:italic;color:var(--text2);max-width:400px;margin:0 auto 2.5rem;line-height:1.55;animation:fadeUp .5s ease .6s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.conf-box{
+  background:var(--bg2);border:1px solid var(--border);
+  padding:2rem;text-align:left;width:100%;max-width:520px;margin:0 auto 1.5rem;
+  animation:fadeUp .5s ease .7s both
+}
+.cd-row{display:flex;justify-content:space-between;align-items:baseline;padding:.7rem 0;border-bottom:1px solid var(--border)}
 .cd-row:last-child{border-bottom:none}
-.cd-key{font-family:var(--fm);font-size:.58rem;letter-spacing:.15em;color:var(--text3);text-transform:uppercase}
-.cd-val{font-family:var(--fm);font-size:.65rem;color:var(--text)}
+.cd-k{font-family:var(--fm);font-size:.46rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3)}
+.cd-v{font-family:var(--fm);font-size:.6rem;letter-spacing:.04em;color:var(--text)}
+.conf-note{font-family:var(--fm);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);animation:fadeUp .5s ease .85s both;line-height:2}
+.conf-note strong{color:var(--text2);font-weight:400}
+.btn-new{
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:none;color:var(--white);
+  font-family:var(--fm);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;
+  padding:1rem 2rem;border:1px solid var(--border2);
+  cursor:pointer;text-decoration:none;transition:border-color .2s;margin-top:2rem;
+  animation:fadeUp .5s ease 1s both
+}
+.btn-new:hover{border-color:var(--white)}
 
-/* BUTTONS */
-.btn-row{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)}
-.btn-primary{display:inline-flex;align-items:center;gap:.8rem;background:var(--white);color:var(--bg);font-family:var(--fm);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;padding:1.1rem 2.5rem;cursor:pointer;border:none;transition:background .2s,transform .2s}
-.btn-primary:hover:not(:disabled){background:var(--g100);transform:translateY(-1px)}
-.btn-primary:disabled{opacity:.4;cursor:not-allowed}
-.btn-secondary{display:inline-flex;align-items:center;gap:.6rem;background:none;color:var(--text3);font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;padding:.8rem 0;cursor:pointer;border:none;transition:color .2s}
+/* ── BUTTONS ── */
+.btn-row{
+  padding:1.8rem 3.5rem;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-shrink:0
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.75rem;
+  background:var(--white);color:var(--bg);
+  font-family:var(--fm);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;
+  padding:1.05rem 2.6rem;cursor:pointer;border:none;
+  transition:background .2s,transform .2s;flex-shrink:0
+}
+.btn-primary:hover:not(:disabled){background:var(--g100);transform:translateY(-2px)}
+.btn-primary:disabled{opacity:.3;cursor:not-allowed;transform:none}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:none;color:var(--text3);
+  font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:.8rem 0;cursor:pointer;border:none;transition:color .2s
+}
 .btn-secondary:hover{color:var(--text)}
-.btn-new-booking{display:inline-flex;align-items:center;gap:.8rem;background:none;color:var(--white);font-family:var(--fm);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;padding:1.1rem 2.5rem;cursor:pointer;border:1px solid var(--border2);transition:border-color .2s;text-decoration:none;margin-top:1.5rem}
-.btn-new-booking:hover{border-color:var(--white)}
 
-/* LOADING */
-.loading{font-family:var(--fm);font-size:.6rem;letter-spacing:.3em;color:var(--text3);text-transform:uppercase;padding:2rem 0;display:flex;align-items:center;gap:.8rem}
-.loading::before{content:'';width:14px;height:14px;border:1px solid var(--border2);border-top-color:var(--text2);border-radius:50%;animation:spin .8s linear infinite;display:block}
+/* ── LOADING ── */
+.loading-state{
+  font-family:var(--fm);font-size:.52rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--text3);padding:3rem 3.5rem;display:flex;align-items:center;gap:.8rem
+}
+.loading-state::before{
+  content:'';width:12px;height:12px;border-radius:50%;
+  border:1px solid var(--border2);border-top-color:var(--text2);
+  animation:spin .7s linear infinite;display:block;flex-shrink:0
+}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ERROR */
-.error-msg{background:rgba(220,50,50,.08);border:1px solid rgba(220,50,50,.25);color:#f88;font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;padding:1rem 1.2rem;margin-bottom:1.5rem;display:none}
-.error-msg.show{display:block}
+/* ── ERROR ── */
+.err{
+  font-family:var(--fm);font-size:.52rem;letter-spacing:.16em;
+  color:#f87171;background:rgba(248,113,113,.05);border:1px solid rgba(248,113,113,.18);
+  padding:.9rem 1.2rem;margin:0 3.5rem 1rem;display:none
+}
+.err.show{display:block}
+.step3-inner .err{margin:0 0 1.5rem}
 
-/* FOOTER */
-footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
-.ft-logo{display:flex;align-items:center}.ft-logo-img{height:26px;width:26px;border-radius:50%;object-fit:cover;opacity:.5}
-.ft-copy{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase}
-
+/* ── MOBILE ── */
 @media(max-width:900px){
-  nav{padding:1.2rem 1.8rem}
-  .step-header{padding:6rem 1.8rem 1.5rem}
-  .step-content{padding:2rem 1.8rem 4rem}
-  .services-grid{grid-template-columns:1fr}
-  .datetime-grid{grid-template-columns:1fr;gap:2.5rem}
-  .time-grid{grid-template-columns:repeat(3,1fr)}
+  .bk-wrap{grid-template-columns:1fr}
+  .sidebar{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--border)}
+  .sb-steps,.sb-sum,.sb-bot{display:none}
+  .sb-mid{padding:1.5rem 1.8rem .8rem}
+  .sb-title{font-size:2rem}
+  .cat-bar{overflow-x:auto}
+  .svc-row{padding:1.1rem 1.8rem}
+  .svc-row:hover,.svc-row.selected{padding-left:2.2rem}
+  .dt-wrap{grid-template-columns:1fr;gap:2.5rem;padding:2rem 1.8rem}
+  .slots-grid{grid-template-columns:repeat(4,1fr)}
+  .step3-inner{padding:2rem 1.8rem}
   .form-grid{grid-template-columns:1fr}
   .form-group.full{grid-column:span 1}
-  footer{padding:2rem 1.8rem;flex-direction:column;align-items:flex-start}
+  .btn-row{padding:1.5rem 1.8rem}
+  .err{margin:0 1.8rem .8rem}
+  .loading-state{padding:2.5rem 1.8rem}
+  .conf-wrap{padding:3rem 1.8rem}
 }
 </style>
 </head>
 <body>
 
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:25%"></div></div>
+<div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
 
-<nav>
-  <a href="index.html" class="nav-logo">
-    <img src="images/logo.svg" alt="Crown Cut" class="nav-logo-img">
-    <span class="nav-logo-sub">Edinburgh · Gilmore Place</span>
-  </a>
-  <a href="index.html" class="nav-back">
-    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
-    Back to Home
-  </a>
-</nav>
+<div class="bk-wrap">
 
-<!-- STEP HEADER -->
-<div class="step-header">
-  <div class="step-indicator" id="stepIndicator">Step 1 of 4</div>
-  <h1 class="step-title" id="stepTitle">Choose<br>your <em>service.</em></h1>
-</div>
-
-<!-- STEP CONTENT -->
-<div class="step-content">
-
-  <!-- STEP 1: Choose Service -->
-  <div class="step-panel active" id="step1">
-    <div class="service-cats" id="catFilters"></div>
-    <div class="error-msg" id="err1">Please select a service to continue.</div>
-    <div class="services-grid" id="servicesGrid"><div class="loading">Loading services</div></div>
-    <div class="btn-row">
-      <span></span>
-      <button class="btn-primary" onclick="goStep(2)" id="btn1">
-        Continue
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- STEP 2: Choose Date & Time -->
-  <div class="step-panel" id="step2">
-    <div class="datetime-grid">
-      <div>
-        <div class="dt-label">Choose a date</div>
-        <input type="date" id="dateInput" min="" onchange="loadSlots()">
-        <p style="font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;margin-top:.8rem">Mon–Fri 09:00–18:00 · Sat 08:30–17:00 · Sun closed</p>
-      </div>
-      <div>
-        <div class="dt-label">Choose a time</div>
-        <div id="slotsContainer"><p class="no-slots">Select a date to see available times</p></div>
-      </div>
-    </div>
-    <div class="error-msg" id="err2">Please select both a date and time.</div>
-    <div class="btn-row">
-      <button class="btn-secondary" onclick="goStep(1)">
-        <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+  <!-- ─────────── SIDEBAR ─────────── -->
+  <aside class="sidebar">
+    <div class="sb-top">
+      <a href="index.html" class="sb-logo">
+        <img src="images/logo.svg" alt="Crown Cut" class="sb-logo-img">
+        <div class="sb-brand">
+          <span class="sb-brand-name">Crown Cut</span>
+          <span class="sb-brand-sub">Edinburgh</span>
+        </div>
+      </a>
+      <a href="index.html" class="sb-back">
+        <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
         Back
-      </button>
-      <button class="btn-primary" onclick="goStep(3)" id="btn2">
-        Continue
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </button>
+      </a>
     </div>
-  </div>
 
-  <!-- STEP 3: Your Details -->
-  <div class="step-panel" id="step3">
-    <div class="booking-summary" id="summary3"></div>
-    <div class="error-msg" id="err3">Please fill in all required fields.</div>
-    <div class="form-grid">
-      <div class="form-group">
-        <label class="form-label">Full Name *</label>
-        <input class="form-input" type="text" id="fName" placeholder="Your full name" autocomplete="name">
+    <div class="sb-steps">
+      <div class="sb-step-row active" id="sbRow1">
+        <div class="sb-step-dot"></div>
+        <span class="sb-step-label">Service</span>
       </div>
-      <div class="form-group">
-        <label class="form-label">Email Address *</label>
-        <input class="form-input" type="email" id="fEmail" placeholder="your@email.com" autocomplete="email">
+      <div class="sb-step-row" id="sbRow2">
+        <div class="sb-step-dot"></div>
+        <span class="sb-step-label">Date & Time</span>
       </div>
-      <div class="form-group">
-        <label class="form-label">Phone Number *</label>
-        <input class="form-input" type="tel" id="fPhone" placeholder="07xxx xxxxxx" autocomplete="tel">
+      <div class="sb-step-row" id="sbRow3">
+        <div class="sb-step-dot"></div>
+        <span class="sb-step-label">Your Details</span>
       </div>
-      <div class="form-group">
-        <label class="form-label">Any Notes (optional)</label>
-        <input class="form-input" type="text" id="fNotes" placeholder="e.g. bring a reference photo">
+      <div class="sb-step-row" id="sbRow4">
+        <div class="sb-step-dot"></div>
+        <span class="sb-step-label">Confirmed</span>
       </div>
     </div>
-    <p style="font-family:var(--fm);font-size:.55rem;letter-spacing:.18em;color:var(--text3);text-transform:uppercase;margin-top:1.5rem">
-      You'll receive confirmation by email and text. You can cancel up to 1 hour before your appointment.
-    </p>
-    <div class="btn-row">
-      <button class="btn-secondary" onclick="goStep(2)">
-        <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
-        Back
-      </button>
-      <button class="btn-primary" onclick="submitBooking()" id="btn3">
-        Confirm Booking
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </button>
-    </div>
-  </div>
 
-  <!-- STEP 4: Confirmed -->
-  <div class="step-panel" id="step4">
-    <div class="confirmed-wrap">
-      <div class="confirmed-icon">✓</div>
-      <p style="font-family:var(--fm);font-size:.6rem;letter-spacing:.4em;color:var(--text3);text-transform:uppercase">Booking Reference</p>
-      <div class="confirmed-ref" id="confRef">CC-XXXXXX</div>
-      <p style="font-family:var(--fs);font-size:1.2rem;font-style:italic;color:var(--text2)">You're all set. Check your email and phone for confirmation.</p>
-      <div class="confirmed-detail" id="confDetail"></div>
-      <p style="font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;margin-top:1.5rem">
-        We'll send a reminder 24 hours before your appointment.
-      </p>
-      <br>
-      <a href="booking-system.html" class="btn-new-booking">Book Another Appointment</a>
-    </div>
-  </div>
+    <div class="sb-mid">
+      <div class="sb-eyebrow" id="sbEyebrow">Step 1 of 4</div>
+      <div class="sb-title" id="sbTitle">Choose<br>your<br><em>service.</em></div>
 
+      <div class="sb-sum" id="sbSum" style="display:none">
+        <div class="sb-sum-lbl">Your booking</div>
+        <div class="sb-sum-row" id="sumSvc">
+          <div class="sb-sum-key">Service</div>
+          <div class="sb-sum-val" id="sumSvcVal"></div>
+        </div>
+        <div class="sb-sum-row" id="sumDate">
+          <div class="sb-sum-key">Date</div>
+          <div class="sb-sum-val" id="sumDateVal"></div>
+        </div>
+        <div class="sb-sum-row" id="sumTime">
+          <div class="sb-sum-key">Time</div>
+          <div class="sb-sum-val" id="sumTimeVal"></div>
+        </div>
+        <div class="sb-sum-row" id="sumPrice">
+          <div class="sb-sum-key">Price</div>
+          <div class="sb-sum-price" id="sumPriceVal"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sb-bot">
+      <div class="sb-addr">119 Gilmore Place · Edinburgh<br>EH3 9PP · 0131 629 7377<br>Mon–Fri 09:00–18:00 · Sat 08:30–17:00</div>
+    </div>
+  </aside>
+
+  <!-- ─────────── MAIN ─────────── -->
+  <main class="bk-main">
+
+    <!-- STEP 1: Choose Service -->
+    <div class="step-panel active" id="step1">
+      <div class="cat-bar" id="catBar"></div>
+      <div class="err" id="err1">Please select a service to continue.</div>
+      <div class="svc-list" id="svcList">
+        <div class="loading-state">Loading services</div>
+      </div>
+      <div class="btn-row">
+        <span></span>
+        <button class="btn-primary" onclick="goStep(2)" id="btn1">
+          Continue
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Date & Time -->
+    <div class="step-panel" id="step2">
+      <div class="dt-wrap">
+        <div>
+          <div class="dt-label">Choose a date</div>
+          <input type="date" id="dateInput" onchange="loadSlots()">
+          <div class="hours-note">Mon–Fri · 09:00 – 18:00<br>Saturday · 08:30 – 17:00<br>Sunday · Closed</div>
+        </div>
+        <div>
+          <div class="dt-label">Available times</div>
+          <div id="slotsContainer"><p class="no-slots">Select a date to see times</p></div>
+        </div>
+      </div>
+      <div class="err" id="err2">Please select both a date and a time.</div>
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="goStep(1)">
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+          Back
+        </button>
+        <button class="btn-primary" onclick="goStep(3)" id="btn2">
+          Continue
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Details -->
+    <div class="step-panel" id="step3">
+      <div class="step3-inner">
+        <div class="bk-sum-box" id="sum3"></div>
+        <div class="err" id="err3">Please fill in all required fields with a valid email address.</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-lbl" for="fName">Full Name *</label>
+            <input class="form-input" type="text" id="fName" placeholder="Your full name" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl" for="fEmail">Email Address *</label>
+            <input class="form-input" type="email" id="fEmail" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl" for="fPhone">Phone Number *</label>
+            <input class="form-input" type="tel" id="fPhone" placeholder="07xxx xxxxxx" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl" for="fNotes">Notes (optional)</label>
+            <input class="form-input" type="text" id="fNotes" placeholder="e.g. bring a reference photo">
+          </div>
+        </div>
+        <p class="form-note">Confirmation sent by email. Cancel up to 1 hour before your appointment.</p>
+      </div>
+      <div class="btn-row">
+        <button class="btn-secondary" onclick="goStep(2)">
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+          Back
+        </button>
+        <button class="btn-primary" onclick="submitBooking()" id="btn3">
+          Confirm Booking
+          <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Confirmed -->
+    <div class="step-panel" id="step4">
+      <div class="conf-wrap">
+        <div class="conf-badge"><span class="conf-tick">✓</span></div>
+        <p class="conf-eye">Booking Confirmed</p>
+        <div class="conf-ref" id="confRef">CC-XXXXXX</div>
+        <p class="conf-sub">You're all set. Check your email for full details and your reference number.</p>
+        <div class="conf-box" id="confDetail"></div>
+        <p class="conf-note">Reminders sent <strong>24 hours</strong> and <strong>1 hour</strong> before your appointment.</p>
+        <a href="booking-system.html" class="btn-new">
+          Book Another
+          <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </main>
 </div>
-
-<footer>
-  <div class="ft-logo"><img src="images/logo.svg" alt="Crown Cut" class="ft-logo-img"></div>
-  <p class="ft-copy">© 2025 Crown Cut Edinburgh · 0131 629 7377</p>
-</footer>
 
 <script>
-// ── Config ─────────────────────────────────────────────────────────────────
 const API = 'https://crown-cut-booking-api.aliy20.workers.dev';
+let services = [], selectedService = null, selectedDate = null, selectedTime = null;
 
-// ── State ──────────────────────────────────────────────────────────────────
-let currentStep = 1;
-let services = [];
-let selectedService = null;
-let selectedDate = null;
-let selectedTime = null;
+const SB_META = {
+  1:{eye:'Step 1 of 4',title:'Choose<br>your<br><em>service.</em>',prog:'25%'},
+  2:{eye:'Step 2 of 4',title:'Pick a<br>date &<br><em>time.</em>',prog:'50%'},
+  3:{eye:'Step 3 of 4',title:'Your<br><em>details.</em>',prog:'75%'},
+  4:{eye:'Confirmed',title:'You\'re<br><em>booked.</em>',prog:'100%'},
+};
 
-// ── Init ───────────────────────────────────────────────────────────────────
-async function init() {
-  // Set min date to today
-  const today = new Date().toISOString().split('T')[0];
-  document.getElementById('dateInput').min = today;
-  document.getElementById('dateInput').value = today;
-
-  try {
-    const r = await fetch(`${API}/api/services`);
-    services = await r.json();
-    renderServices('all');
-    renderCatFilters();
-    // Pre-select service if ?sid=N passed (from pricing page)
-    const sid = parseInt(new URLSearchParams(window.location.search).get('sid'));
-    if (sid) {
-      const match = services.find(s => s.id === sid);
-      if (match) selectService(match.id);
-    }
-  } catch (e) {
-    document.getElementById('servicesGrid').innerHTML =
-      '<p style="font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;padding:2rem">Could not load services. Please refresh or call 0131 629 7377.</p>';
+// ── Sidebar ────────────────────────────────────────────────────────────────
+function updateSidebar(step) {
+  const m = SB_META[step];
+  document.getElementById('sbEyebrow').textContent = m.eye;
+  document.getElementById('sbTitle').innerHTML = m.title;
+  document.getElementById('progFill').style.width = m.prog;
+  for (let i = 1; i <= 4; i++) {
+    const r = document.getElementById('sbRow' + i);
+    r.classList.remove('active', 'done');
+    if (i === step) r.classList.add('active');
+    else if (i < step) r.classList.add('done');
   }
 }
 
-function renderCatFilters() {
+function showSumRow(rowId, valId, val) {
+  const row = document.getElementById(rowId);
+  if (val) {
+    document.getElementById(valId).textContent = val;
+    row.style.display = 'flex';
+    row.style.flexDirection = 'column';
+    setTimeout(() => row.classList.add('vis'), 20);
+  } else {
+    row.style.display = 'none';
+    row.classList.remove('vis');
+  }
+}
+
+function updateSidebarSummary() {
+  const hasSomething = !!(selectedService || selectedDate || selectedTime);
+  document.getElementById('sbSum').style.display = hasSomething ? 'block' : 'none';
+  showSumRow('sumSvc', 'sumSvcVal', selectedService?.name || null);
+  if (selectedDate) {
+    const d = new Date(selectedDate + 'T12:00:00Z');
+    showSumRow('sumDate', 'sumDateVal', d.toLocaleDateString('en-GB', {weekday:'short', day:'numeric', month:'short'}));
+  } else showSumRow('sumDate', 'sumDateVal', null);
+  showSumRow('sumTime', 'sumTimeVal', selectedTime || null);
+  if (selectedService) {
+    document.getElementById('sumPriceVal').textContent = '£' + (selectedService.price_pence / 100).toFixed(2);
+    const pr = document.getElementById('sumPrice');
+    pr.style.display = 'flex'; pr.style.flexDirection = 'column';
+    setTimeout(() => pr.classList.add('vis'), 20);
+  } else {
+    const pr = document.getElementById('sumPrice');
+    pr.style.display = 'none'; pr.classList.remove('vis');
+  }
+}
+
+// ── Services ───────────────────────────────────────────────────────────────
+async function init() {
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('dateInput').min = today;
+  document.getElementById('dateInput').value = today;
+  try {
+    const r = await fetch(`${API}/api/services`);
+    services = await r.json();
+    renderCatBar();
+    renderServices('all');
+    const sid = parseInt(new URLSearchParams(window.location.search).get('sid'));
+    if (sid && services.find(s => s.id === sid)) selectService(sid);
+  } catch(e) {
+    document.getElementById('svcList').innerHTML = '<p class="no-slots" style="padding:3rem 3.5rem">Could not load services. Please refresh or call 0131 629 7377.</p>';
+  }
+}
+
+function renderCatBar() {
   const cats = ['all', ...new Set(services.map(s => s.category))];
-  const container = document.getElementById('catFilters');
-  container.innerHTML = cats.map(c =>
-    `<button class="cat-btn ${c === 'all' ? 'active' : ''}" onclick="filterCat('${c}', this)">${c === 'all' ? 'All Services' : c}</button>`
+  document.getElementById('catBar').innerHTML = cats.map(c =>
+    `<button class="cat-btn${c==='all'?' active':''}" onclick="filterCat('${c}',this)">${c==='all'?'All Services':c}</button>`
   ).join('');
 }
 
@@ -314,157 +552,124 @@ function filterCat(cat, btn) {
 }
 
 function renderServices(cat) {
-  const grid = document.getElementById('servicesGrid');
   const filtered = cat === 'all' ? services : services.filter(s => s.category === cat);
-  grid.innerHTML = filtered.map(s => `
-    <div class="service-card ${selectedService?.id === s.id ? 'selected' : ''}" onclick="selectService(${s.id})" data-id="${s.id}">
-      <div class="sc-check"></div>
-      <div class="sc-cat">${s.category}</div>
-      <div class="sc-name">${s.name}</div>
-      <div class="sc-dur">${s.duration_minutes} min</div>
-      <div class="sc-price">from £${(s.price_pence/100).toFixed(2)}</div>
+  document.getElementById('svcList').innerHTML = filtered.map(s => `
+    <div class="svc-row${selectedService?.id===s.id?' selected':''}" onclick="selectService(${s.id})" data-id="${s.id}">
+      <div class="sr-left">
+        <div class="sr-cat">${s.category}</div>
+        <div class="sr-name">${s.name}</div>
+      </div>
+      <div class="sr-right">
+        <div class="sr-dur">${s.duration_minutes} min</div>
+        <div class="sr-price">£${(s.price_pence/100).toFixed(0)}</div>
+        <div class="sr-check"><span class="sr-chk">✓</span></div>
+      </div>
     </div>
   `).join('');
 }
 
 function selectService(id) {
   selectedService = services.find(s => s.id === id);
-  document.querySelectorAll('.service-card').forEach(c => {
-    c.classList.toggle('selected', parseInt(c.dataset.id) === id);
-  });
+  document.querySelectorAll('.svc-row').forEach(r => r.classList.toggle('selected', parseInt(r.dataset.id) === id));
+  updateSidebarSummary();
 }
 
-// ── Date / Time ────────────────────────────────────────────────────────────
+// ── Date & Time ────────────────────────────────────────────────────────────
 async function loadSlots() {
   const date = document.getElementById('dateInput').value;
-  selectedDate = date;
-  selectedTime = null;
-  const container = document.getElementById('slotsContainer');
-  container.innerHTML = '<div class="loading">Checking availability</div>';
+  selectedDate = date; selectedTime = null;
+  updateSidebarSummary();
+  const c = document.getElementById('slotsContainer');
+  c.innerHTML = '<div class="loading-state">Checking availability</div>';
   try {
     const r = await fetch(`${API}/api/availability/${date}`);
     const data = await r.json();
-    if (!data.slots || data.slots.length === 0) {
-      container.innerHTML = '<p class="no-slots">No availability on this date</p>';
-      return;
+    if (!data.slots || !data.slots.length) {
+      c.innerHTML = '<p class="no-slots">No availability on this date</p>'; return;
     }
-    container.innerHTML = `<div class="time-grid">${data.slots.map(t =>
-      `<div class="time-slot" onclick="selectTime('${t}', this)">${t}</div>`
-    ).join('')}</div>`;
-  } catch (e) {
-    container.innerHTML = '<p class="no-slots">Could not load slots — try again</p>';
+    const am = data.slots.filter(t => parseInt(t) < 12);
+    const pm = data.slots.filter(t => parseInt(t) >= 12);
+    const grp = (label, slots) => slots.length ? `<div class="slot-group"><div class="slot-group-lbl">${label}</div><div class="slots-grid">${slots.map(t=>`<div class="t-slot" onclick="selectTime('${t}',this)">${t}</div>`).join('')}</div></div>` : '';
+    c.innerHTML = grp('Morning', am) + grp('Afternoon', pm);
+  } catch(e) {
+    c.innerHTML = '<p class="no-slots">Could not load times — try again</p>';
   }
 }
 
 function selectTime(time, el) {
   selectedTime = time;
-  document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+  document.querySelectorAll('.t-slot').forEach(s => s.classList.remove('selected'));
   el.classList.add('selected');
+  updateSidebarSummary();
 }
 
-// ── Booking summary ────────────────────────────────────────────────────────
-function buildSummary(containerId) {
+// ── Summary box ────────────────────────────────────────────────────────────
+function buildSummaryBox(id) {
   if (!selectedService || !selectedDate || !selectedTime) return;
   const d = new Date(selectedDate + 'T12:00:00Z');
-  const dateStr = d.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  document.getElementById(containerId).innerHTML = `
-    <div class="bs-label">Your Booking</div>
-    <div class="bs-row"><span class="bs-key">Service</span><span class="bs-val">${selectedService.name}</span></div>
-    <div class="bs-row"><span class="bs-key">Date</span><span class="bs-val">${dateStr}</span></div>
-    <div class="bs-row"><span class="bs-key">Time</span><span class="bs-val">${selectedTime}</span></div>
-    <div class="bs-row"><span class="bs-key">Duration</span><span class="bs-val">${selectedService.duration_minutes} min</span></div>
-    <div class="bs-row"><span class="bs-key">Price</span><span class="bs-price">£${(selectedService.price_pence/100).toFixed(2)}</span></div>
+  const dateStr = d.toLocaleDateString('en-GB', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  document.getElementById(id).innerHTML = `
+    <div class="bsb-hdr">Booking Summary</div>
+    <div class="bsb-row"><span class="bsb-k">Service</span><span class="bsb-v">${selectedService.name}</span></div>
+    <div class="bsb-row"><span class="bsb-k">Date</span><span class="bsb-v">${dateStr}</span></div>
+    <div class="bsb-row"><span class="bsb-k">Time</span><span class="bsb-v">${selectedTime}</span></div>
+    <div class="bsb-row"><span class="bsb-k">Duration</span><span class="bsb-v">${selectedService.duration_minutes} min</span></div>
+    <div class="bsb-row"><span class="bsb-k">Total</span><span class="bsb-price">£${(selectedService.price_pence/100).toFixed(2)}</span></div>
   `;
 }
 
 // ── Navigation ─────────────────────────────────────────────────────────────
-const STEP_META = {
-  1: { progress: '25%', indicator: 'Step 1 of 4', title: 'Choose<br>your <em>service.</em>' },
-  2: { progress: '50%', indicator: 'Step 2 of 4', title: 'Pick a<br><em>date & time.</em>' },
-  3: { progress: '75%', indicator: 'Step 3 of 4', title: 'Your<br><em>details.</em>' },
-  4: { progress: '100%', indicator: 'Booking Confirmed', title: 'You\'re<br><em>booked.</em>' },
-};
-
 function goStep(n) {
-  // Validate before advancing
-  if (n === 2 && !selectedService) {
-    document.getElementById('err1').classList.add('show');
-    return;
-  }
-  if (n === 3 && (!selectedDate || !selectedTime)) {
-    document.getElementById('err2').classList.add('show');
-    return;
-  }
-
-  document.getElementById('err1').classList.remove('show');
-  document.getElementById('err2').classList.remove('show');
-
+  if (n === 2 && !selectedService) { document.getElementById('err1').classList.add('show'); return; }
+  if (n === 3 && (!selectedDate || !selectedTime)) { document.getElementById('err2').classList.add('show'); return; }
+  ['err1','err2','err3'].forEach(id => document.getElementById(id).classList.remove('show'));
   document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById(`step${n}`).classList.add('active');
-
-  const meta = STEP_META[n];
-  document.getElementById('progressFill').style.width = meta.progress;
-  document.getElementById('stepIndicator').textContent = meta.indicator;
-  document.getElementById('stepTitle').innerHTML = meta.title;
-
+  document.getElementById('step'+n).classList.add('active');
+  updateSidebar(n);
   if (n === 2) loadSlots();
-  if (n === 3) buildSummary('summary3');
-
-  currentStep = n;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (n === 3) buildSummaryBox('sum3');
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 // ── Submit ─────────────────────────────────────────────────────────────────
 async function submitBooking() {
-  const name = document.getElementById('fName').value.trim();
+  const name  = document.getElementById('fName').value.trim();
   const email = document.getElementById('fEmail').value.trim();
   const phone = document.getElementById('fPhone').value.trim();
   const notes = document.getElementById('fNotes').value.trim();
-
-  if (!name || !email || !phone) {
-    document.getElementById('err3').classList.add('show');
-    return;
+  if (!name || !email || !phone || !email.includes('@')) {
+    document.getElementById('err3').classList.add('show'); return;
   }
-
   const btn = document.getElementById('btn3');
   btn.disabled = true;
-  btn.textContent = 'Booking...';
+  btn.innerHTML = 'Confirming…';
   document.getElementById('err3').classList.remove('show');
-
   try {
     const r = await fetch(`${API}/api/bookings`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service_id: selectedService.id,
-        customer_name: name,
-        customer_email: email,
-        customer_phone: phone,
-        appointment_date: selectedDate,
-        appointment_time: selectedTime,
-        notes,
-      }),
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({service_id:selectedService.id,customer_name:name,customer_email:email,customer_phone:phone,appointment_date:selectedDate,appointment_time:selectedTime,notes}),
     });
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || 'Booking failed');
-
     const d = new Date(selectedDate + 'T12:00:00Z');
-    const dateStr = d.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const dateStr = d.toLocaleDateString('en-GB', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
     document.getElementById('confRef').textContent = data.booking_ref;
     document.getElementById('confDetail').innerHTML = `
-      <div class="cd-row"><span class="cd-key">Service</span><span class="cd-val">${selectedService.name}</span></div>
-      <div class="cd-row"><span class="cd-key">Date</span><span class="cd-val">${dateStr}</span></div>
-      <div class="cd-row"><span class="cd-key">Time</span><span class="cd-val">${selectedTime}</span></div>
-      <div class="cd-row"><span class="cd-key">Name</span><span class="cd-val">${name}</span></div>
-      <div class="cd-row"><span class="cd-key">Email</span><span class="cd-val">${email}</span></div>
-      <div class="cd-row"><span class="cd-key">Phone</span><span class="cd-val">${phone}</span></div>
+      <div class="cd-row"><span class="cd-k">Service</span><span class="cd-v">${selectedService.name}</span></div>
+      <div class="cd-row"><span class="cd-k">Date</span><span class="cd-v">${dateStr}</span></div>
+      <div class="cd-row"><span class="cd-k">Time</span><span class="cd-v">${selectedTime}</span></div>
+      <div class="cd-row"><span class="cd-k">Name</span><span class="cd-v">${name}</span></div>
+      <div class="cd-row"><span class="cd-k">Email</span><span class="cd-v">${email}</span></div>
+      <div class="cd-row"><span class="cd-k">Price</span><span class="cd-v" style="font-family:var(--fd);font-size:1.6rem;color:var(--white);letter-spacing:.08em">£${(selectedService.price_pence/100).toFixed(2)}</span></div>
     `;
     goStep(4);
-  } catch (e) {
-    document.getElementById('err3').textContent = e.message;
-    document.getElementById('err3').classList.add('show');
+  } catch(e) {
+    const errEl = document.getElementById('err3');
+    errEl.textContent = e.message;
+    errEl.classList.add('show');
     btn.disabled = false;
-    btn.textContent = 'Confirm Booking';
+    btn.innerHTML = 'Confirm Booking <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>';
   }
 }
 
@@ -479,11 +684,9 @@ init();
   requestAnimationFrame(function(){requestAnimationFrame(function(){ov.style.opacity='0';ov.style.pointerEvents='none';});});
   document.addEventListener('click',function(e){
     var a=e.target.closest('a[href]');
-    if(!a)return;
-    var h=a.getAttribute('href');
+    if(!a)return;var h=a.getAttribute('href');
     if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto:')||h.startsWith('tel:')||a.target==='_blank')return;
-    e.preventDefault();
-    ov.style.opacity='1';ov.style.pointerEvents='all';
+    e.preventDefault();ov.style.opacity='1';ov.style.pointerEvents='all';
     setTimeout(function(){location.href=h;},550);
   });
 })();
