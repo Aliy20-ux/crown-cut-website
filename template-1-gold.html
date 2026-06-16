@@ -174,20 +174,31 @@
       padding: 8rem 6rem 5rem;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(180deg, rgba(8,8,8,0.75) 0%, rgba(8,8,8,0.52) 45%, rgba(8,8,8,0.88) 100%), url('images/hero-shop.jpg') center/cover no-repeat;
+      background: var(--bg);
     }
 
     #hero::before {
       content: '';
       position: absolute;
+      inset: -24px;
+      background: url('images/hero-shop.jpg') center/cover no-repeat;
+      filter: blur(7px) brightness(.44) saturate(.75);
+      z-index: 0;
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
       inset: 0;
+      background: linear-gradient(180deg, rgba(8,8,8,.58) 0%, rgba(8,8,8,.22) 44%, rgba(8,8,8,.88) 100%);
+      z-index: 1;
       pointer-events: none;
     }
 
     .hero-inner {
       max-width: 860px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .hero-rule {
