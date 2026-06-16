@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pricing — Crown Cut Edinburgh</title>
-<meta name="description" content="Crown Cut Edinburgh pricing — haircuts, skin fades, beard work and hot shaves at 119 Gilmore Place. Book online.">
+<meta name="description" content="Crown Cut Edinburgh pricing for Kate and Dilman — haircuts, skin fades, beard work and hot shaves at 119 Gilmore Place. Book online.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
   --bg:#0A0A0A;--bg2:#111111;--bg3:#191919;
   --border:#222222;--border2:#2E2E2E;
   --text:#E8E8E4;--text2:#888888;--text3:#555555;
-  --white:#F6F6F2;--g100:#DDDDD8;--g200:#ABABAB;--g600:#555555;--g800:#282828;
+  --white:#F6F6F2;--g100:#DDDDD8;--g200:#ABABAB;
   --fd:'Bebas Neue','Arial Narrow',sans-serif;
   --fs:'Cormorant Garamond',Georgia,serif;
   --fb:'Inter',system-ui,sans-serif;
@@ -44,29 +44,41 @@ nav.scrolled{padding:1.1rem 4rem;background:rgba(10,10,10,.92);backdrop-filter:b
 .mob-menu a:hover{color:var(--white)}
 .mob-close{position:absolute;top:1.8rem;right:2.5rem;background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:.65rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase}
 
-/* PAGE HEADER — cinematic with shop photo */
-.page-header{min-height:55vh;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
-.page-header-bg{position:absolute;inset:-20px;background:url('images/hero-shop.jpg') center/cover no-repeat;filter:blur(6px) brightness(.28) saturate(.7);z-index:0}
-.page-header-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.3) 0%,rgba(10,10,10,.6) 55%,rgba(10,10,10,1) 100%);z-index:1}
+/* PAGE HEADER */
+.page-header{min-height:52vh;padding:0;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.page-header-bg{position:absolute;inset:-20px;background:url('images/hero-interior.jpg') center/cover no-repeat;filter:blur(6px) brightness(.28) saturate(.7);z-index:0}
+.page-header-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.3) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,1) 100%);z-index:1}
 .page-header-content{position:relative;z-index:2;padding:0 5rem 5rem}
-.page-header-back{font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,246,242,.45);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:color .2s;margin-bottom:3rem;display:block}
+.page-header-back{font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,246,242,.45);text-decoration:none;display:block;transition:color .2s;margin-bottom:3rem}
 .page-header-back:hover{color:var(--white)}
-.page-header-back svg{transform:rotate(180deg);display:inline;vertical-align:middle;margin-right:.3rem}
 .page-header-eyebrow{font-family:var(--fm);font-size:.58rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(246,246,242,.4);display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
 .page-header-eyebrow::before{content:'';display:block;width:28px;height:1px;background:rgba(246,246,242,.3)}
-.page-title{font-family:var(--fd);font-size:clamp(5.5rem,13vw,12rem);line-height:.85;color:var(--white);letter-spacing:.02em}
+.page-title{font-family:var(--fd);font-size:clamp(5rem,13vw,12rem);line-height:.85;color:var(--white);letter-spacing:.02em}
 .page-title em{font-family:var(--fs);font-style:italic;color:var(--g200)}
-.page-header-meta{display:flex;align-items:center;gap:3rem;margin-top:2.5rem;flex-wrap:wrap}
-.page-header-stat{display:flex;flex-direction:column;gap:.3rem}
-.page-header-stat-num{font-family:var(--fd);font-size:1.8rem;color:var(--white);letter-spacing:.04em;line-height:1}
-.page-header-stat-label{font-family:var(--fm);font-size:.5rem;letter-spacing:.3em;color:var(--text3);text-transform:uppercase}
-.page-header-divider{width:1px;height:36px;background:var(--border2);flex-shrink:0}
-.page-note{font-family:var(--fm);font-size:.55rem;letter-spacing:.25em;color:var(--text3);text-transform:uppercase;margin-top:1.5rem}
+.page-note{font-family:var(--fm);font-size:.55rem;letter-spacing:.25em;color:var(--text3);text-transform:uppercase;margin-top:2rem}
+
+/* BARBER SELECTOR */
+.barber-select-wrap{padding:4rem 4rem 0;border-bottom:1px solid var(--border)}
+.barber-select-label{font-family:var(--fm);font-size:.55rem;letter-spacing:.45em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:.8rem;margin-bottom:2.5rem}
+.barber-select-label::before{content:'';display:block;width:20px;height:1px;background:var(--text3)}
+.barber-tabs{display:flex;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;width:fit-content}
+.barber-tab{font-family:var(--fm);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;background:none;border:none;color:var(--text3);padding:1.1rem 3.5rem;cursor:pointer;transition:background .3s,color .3s;position:relative}
+.barber-tab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--white);transform:scaleX(0);transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.barber-tab.active{background:var(--bg2);color:var(--white)}
+.barber-tab.active::after{transform:scaleX(1)}
+.barber-tab:not(.active):hover{color:var(--text2);background:rgba(255,255,255,.03)}
+.barber-divider{width:1px;background:var(--border)}
+.barber-info{display:flex;align-items:center;gap:2.5rem;padding:2rem 0}
+.barber-avatar{width:52px;height:52px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.4rem;color:var(--white);letter-spacing:.04em;flex-shrink:0}
+.barber-meta-name{font-family:var(--fd);font-size:1.8rem;color:var(--white);letter-spacing:.04em;line-height:1}
+.barber-meta-sub{font-family:var(--fm);font-size:.52rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;margin-top:.4rem}
 
 /* PRICING SECTION */
 .pricing-section{padding:0 0 10rem}
 
 /* Category block */
+.barber-panel{display:none}
+.barber-panel.active{display:block}
 .price-cat{
   display:grid;
   grid-template-columns:280px 1fr;
@@ -78,159 +90,43 @@ nav.scrolled{padding:1.1rem 4rem;background:rgba(10,10,10,.92);backdrop-filter:b
 }
 .price-cat:last-child{border-bottom:none}
 
-/* Left: sticky category label */
+/* Left sticky label */
 .price-cat-header{position:sticky;top:7rem}
-.price-cat-num{
-  font-family:var(--fd);
-  font-size:clamp(7rem,10vw,11rem);
-  line-height:1;
-  color:var(--white);
-  opacity:.045;
-  display:block;
-  margin-bottom:.8rem;
-  letter-spacing:-.02em;
-  pointer-events:none;
-  user-select:none;
-}
+.price-cat-num{font-family:var(--fd);font-size:clamp(7rem,10vw,11rem);line-height:1;color:var(--white);opacity:.045;display:block;margin-bottom:.8rem;letter-spacing:-.02em;pointer-events:none;user-select:none}
 .price-cat-label{font-family:var(--fm);font-size:.55rem;letter-spacing:.45em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
 .price-cat-label::before{content:'';display:block;width:20px;height:1px;background:var(--text3)}
 .price-cat-title{font-family:var(--fd);font-size:clamp(2.2rem,3vw,3rem);color:var(--white);letter-spacing:.04em;line-height:.9;margin-bottom:1.2rem}
 .price-cat-desc{font-family:var(--fs);font-style:italic;font-size:.95rem;color:var(--text3);line-height:1.6}
 
-/* Right: service cards */
+/* Service cards */
 .price-rows{display:flex;flex-direction:column;gap:1.2rem}
-
 .price-row{
-  display:flex;
-  flex-direction:column;
+  display:flex;flex-direction:column;
   padding:2rem 2.6rem;
   background:var(--bg2);
   border:1px solid var(--border);
   border-radius:16px;
-  position:relative;
-  overflow:hidden;
+  position:relative;overflow:hidden;
   transition:transform .5s cubic-bezier(.16,1,.3,1),border-color .4s,box-shadow .5s,background .4s;
 }
-/* shimmer layer */
-.price-row::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,rgba(246,246,242,.04) 0%,transparent 55%);
-  opacity:0;
-  transition:opacity .45s;
-  pointer-events:none;
-}
-/* left accent */
-.price-row::after{
-  content:'';
-  position:absolute;
-  left:0;top:16px;bottom:16px;
-  width:2px;
-  background:var(--white);
-  border-radius:0 2px 2px 0;
-  transform:scaleY(0);
-  transform-origin:bottom;
-  transition:transform .5s cubic-bezier(.16,1,.3,1);
-}
-.price-row:hover{
-  transform:translateY(-7px);
-  border-color:rgba(246,246,242,.16);
-  box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 0 1px rgba(246,246,242,.06);
-  background:var(--bg3);
-}
+.price-row::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(246,246,242,.04) 0%,transparent 55%);opacity:0;transition:opacity .45s;pointer-events:none}
+.price-row::after{content:'';position:absolute;left:0;top:16px;bottom:16px;width:2px;background:var(--white);border-radius:0 2px 2px 0;transform:scaleY(0);transform-origin:bottom;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.price-row:hover{transform:translateY(-7px);border-color:rgba(246,246,242,.16);box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 0 1px rgba(246,246,242,.06);background:var(--bg3)}
 .price-row:hover::before{opacity:1}
 .price-row:hover::after{transform:scaleY(1)}
-
-/* Popular featured card */
-.price-row.featured{
-  background:linear-gradient(145deg,#161616 0%,#121212 100%);
-  border-color:rgba(246,246,242,.1);
-}
-
-/* Card top row: name + duration */
-.price-row-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:1.5rem;
-  margin-bottom:1.6rem;
-}
-.price-name{
-  font-family:var(--fs);
-  font-style:italic;
-  font-size:1.15rem;
-  font-weight:300;
-  color:var(--text);
-  line-height:1.35;
-  flex:1;
-}
-.price-dur{
-  font-family:var(--fm);
-  font-size:.52rem;
-  letter-spacing:.2em;
-  color:var(--text3);
-  text-transform:uppercase;
-  white-space:nowrap;
-  padding-top:.25rem;
-  flex-shrink:0;
-}
-
-/* Separator */
+.price-row.featured{background:linear-gradient(145deg,#161616 0%,#121212 100%);border-color:rgba(246,246,242,.1)}
+.price-row-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;margin-bottom:1.6rem}
+.price-name{font-family:var(--fs);font-style:italic;font-size:1.15rem;font-weight:300;color:var(--text);line-height:1.35;flex:1}
+.price-dur{font-family:var(--fm);font-size:.52rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;white-space:nowrap;padding-top:.25rem;flex-shrink:0}
 .price-row-sep{height:1px;background:var(--border);margin-bottom:1.6rem}
-
-/* Card bottom row: price + book */
-.price-row-bottom{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1.5rem;
-}
-.price-amount{
-  font-family:var(--fd);
-  font-size:clamp(2.4rem,4vw,3.2rem);
-  color:var(--white);
-  letter-spacing:.03em;
-  line-height:1;
-  transition:color .3s;
-}
+.price-row-bottom{display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.price-amount{font-family:var(--fd);font-size:clamp(2.4rem,4vw,3.2rem);color:var(--white);letter-spacing:.03em;line-height:1;transition:color .3s}
 .price-row:hover .price-amount{color:var(--g100)}
-.price-book-btn{
-  font-family:var(--fm);
-  font-size:.58rem;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--text3);
-  text-decoration:none;
-  border:1px solid var(--border);
-  padding:.7rem 1.5rem;
-  border-radius:4px;
-  transition:border-color .25s,color .25s,background .25s,transform .25s;
-  white-space:nowrap;
-  flex-shrink:0;
-}
-.price-book-btn:hover{
-  border-color:var(--white);
-  color:var(--white);
-  background:rgba(246,246,242,.06);
-  transform:translateY(-1px);
-}
+.price-book-btn{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);text-decoration:none;border:1px solid var(--border);padding:.7rem 1.5rem;border-radius:4px;transition:border-color .25s,color .25s,background .25s,transform .25s;white-space:nowrap;flex-shrink:0}
+.price-book-btn:hover{border-color:var(--white);color:var(--white);background:rgba(246,246,242,.06);transform:translateY(-1px)}
+.badge{font-family:var(--fm);font-size:.42rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bg);background:var(--white);padding:.2rem .55rem;margin-left:.7rem;vertical-align:middle;border-radius:2px}
 
-/* Badge */
-.badge{
-  font-family:var(--fm);
-  font-size:.42rem;
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  color:var(--bg);
-  background:var(--white);
-  padding:.2rem .55rem;
-  margin-left:.7rem;
-  vertical-align:middle;
-  border-radius:2px;
-}
-
-/* BOOK CTA STRIP */
+/* BOOK CTA */
 .book-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
 .book-strip-h{font-family:var(--fd);font-size:clamp(2.5rem,6vw,5rem);color:var(--white);line-height:.88;margin-bottom:.8rem}
 .book-strip-h em{font-family:var(--fs);font-style:italic;color:var(--g200)}
@@ -255,8 +151,7 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
 
 /* RESPONSIVE */
 @media(max-width:1000px){
-  .pricing-section{padding:0 3rem 7rem}
-  .price-cat{grid-template-columns:200px 1fr;gap:4rem}
+  .price-cat{grid-template-columns:180px 1fr;gap:3rem}
 }
 @media(max-width:760px){
   nav{padding:1.5rem 1.8rem}
@@ -264,19 +159,17 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
   .nav-links,.nav-book{display:none}
   .nav-ham{display:flex}
   .page-header-content{padding:0 1.8rem 4rem}
-  .pricing-section{padding:0 0 5rem}
+  .barber-select-wrap{padding:3rem 1.8rem 0}
+  .barber-tab{padding:.9rem 2rem}
   .price-cat{grid-template-columns:1fr;gap:2rem;padding:4rem 1.8rem}
   .price-cat-header{position:static}
-  .price-cat-num{font-size:5rem;margin-bottom:.4rem}
-  .price-row-top{flex-wrap:wrap}
+  .price-cat-num{font-size:5rem}
   .price-dur{display:none}
   .price-book-btn{display:none}
   .price-amount{font-size:2.2rem}
   .book-strip{padding:3rem 1.8rem;flex-direction:column;align-items:flex-start}
   footer{padding:2rem 1.8rem;flex-direction:column;align-items:flex-start;gap:1.2rem}
   .mob-close{right:2rem}
-  .page-header-meta{gap:1.5rem}
-  .page-header-divider{display:none}
 }
 </style>
 </head>
@@ -317,345 +210,345 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
   <div class="page-header-bg"></div>
   <div class="page-header-overlay"></div>
   <div class="page-header-content">
-    <a href="index.html" class="page-header-back">
-      <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      Back to Home
-    </a>
+    <a href="index.html" class="page-header-back">← Back to Home</a>
     <div class="page-header-eyebrow">Crown Cut Edinburgh · Gilmore Place</div>
     <h1 class="page-title">Services &amp;<br><em>Pricing.</em></h1>
-    <div class="page-header-meta">
-      <div class="page-header-stat">
-        <span class="page-header-stat-num">5</span>
-        <span class="page-header-stat-label">Service Categories</span>
-      </div>
-      <div class="page-header-divider"></div>
-      <div class="page-header-stat">
-        <span class="page-header-stat-num">£15</span>
-        <span class="page-header-stat-label">Starting From</span>
-      </div>
-      <div class="page-header-divider"></div>
-      <div class="page-header-stat">
-        <span class="page-header-stat-num">6</span>
-        <span class="page-header-stat-label">Days a Week</span>
-      </div>
-    </div>
-    <p class="page-note">Starting rates · May vary by barber · Book online</p>
+    <p class="page-note">Prices vary by barber · Book online · 6 days a week</p>
   </div>
 </header>
+
+<!-- BARBER SELECTOR -->
+<div class="barber-select-wrap">
+  <div class="barber-select-label">Choose your barber</div>
+  <div class="barber-tabs">
+    <button class="barber-tab active" data-target="kate">Kate</button>
+    <div class="barber-divider"></div>
+    <button class="barber-tab" data-target="dilman">Dilman</button>
+  </div>
+  <div class="barber-info" id="barber-info-kate">
+    <div class="barber-avatar">K</div>
+    <div>
+      <div class="barber-meta-name">Kate</div>
+      <div class="barber-meta-sub">18 services · from £15</div>
+    </div>
+  </div>
+  <div class="barber-info" id="barber-info-dilman" style="display:none">
+    <div class="barber-avatar">D</div>
+    <div>
+      <div class="barber-meta-name">Dilman</div>
+      <div class="barber-meta-sub">18 services · from £15</div>
+    </div>
+  </div>
+</div>
 
 <!-- PRICING -->
 <section class="pricing-section">
 
-  <!-- Haircuts -->
-  <div class="price-cat rv" id="cat-haircuts">
-    <div class="price-cat-header">
-      <span class="price-cat-num">01</span>
-      <div class="price-cat-label">Category</div>
-      <div class="price-cat-title">Haircuts</div>
-      <p class="price-cat-desc">Classic precision cuts tailored to your style, delivered with care.</p>
+  <!-- ═══ KATE ═══ -->
+  <div class="barber-panel active" id="panel-kate">
+
+    <div class="price-cat rv" id="cat-haircuts">
+      <div class="price-cat-header">
+        <span class="price-cat-num">01</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Haircuts</div>
+        <p class="price-cat-desc">Classic precision cuts tailored to your style.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row featured rv">
+          <div class="price-row-top"><div class="price-name">Standard Haircut <span class="badge">Popular</span></div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£21</div><a href="booking-system.html?barber=kate&sid=1" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Back &amp; Sides</div><div class="price-dur">20 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£19</div><a href="booking-system.html?barber=kate&sid=2" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d2">
+          <div class="price-row-top"><div class="price-name">Clipper Cut (up to No.2)</div><div class="price-dur">15 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£15</div><a href="booking-system.html?barber=kate&sid=5" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d3">
+          <div class="price-row-top"><div class="price-name">Student Haircut <span class="badge">Mon–Thu</span></div><div class="price-dur">25 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£20</div><a href="booking-system.html?barber=kate&sid=6" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Children under 16 (excl. Skin Fade)</div><div class="price-dur">25 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£17</div><a href="booking-system.html?barber=kate&sid=7" class="price-book-btn">Book Now →</a></div>
+        </div>
+      </div>
     </div>
-    <div class="price-rows">
 
-      <div class="price-row featured rv">
-        <div class="price-row-top">
-          <div class="price-name">Standard Haircut <span class="badge">Popular</span></div>
-          <div class="price-dur">25–30 min</div>
+    <div class="price-cat rv" id="cat-skin-fades">
+      <div class="price-cat-header">
+        <span class="price-cat-num">02</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Skin Fades</div>
+        <p class="price-cat-desc">Seamless blends taken down to the skin — Kate's signature.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row featured rv">
+          <div class="price-row-top"><div class="price-name">Skin Fade <span class="badge">Popular</span></div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£23</div><a href="booking-system.html?barber=kate&sid=8" class="price-book-btn">Book Now →</a></div>
         </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £21</div>
-          <a href="booking-system.html?sid=1" class="price-book-btn">Book Now →</a>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Back &amp; Sides (Skin Fade)</div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£21</div><a href="booking-system.html?barber=kate&sid=9" class="price-book-btn">Book Now →</a></div>
         </div>
       </div>
-
-      <div class="price-row rv d1">
-        <div class="price-row-top">
-          <div class="price-name">Back &amp; Sides</div>
-          <div class="price-dur">20 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £19</div>
-          <a href="booking-system.html?sid=2" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv d2">
-        <div class="price-row-top">
-          <div class="price-name">Scissor Cut</div>
-          <div class="price-dur">30 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">£25</div>
-          <a href="booking-system.html?sid=4" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv d3">
-        <div class="price-row-top">
-          <div class="price-name">Clipper Cut (up to No.2)</div>
-          <div class="price-dur">15 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">£15</div>
-          <a href="booking-system.html?sid=5" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv">
-        <div class="price-row-top">
-          <div class="price-name">Student Haircut <span class="badge">Mon–Thu</span></div>
-          <div class="price-dur">25 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £20</div>
-          <a href="booking-system.html?sid=6" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv d1">
-        <div class="price-row-top">
-          <div class="price-name">Children under 16 (excl. Skin Fade)</div>
-          <div class="price-dur">25 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £17</div>
-          <a href="booking-system.html?sid=7" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-  <!-- Skin Fades -->
-  <div class="price-cat rv" id="cat-skin-fades">
-    <div class="price-cat-header">
-      <span class="price-cat-num">02</span>
-      <div class="price-cat-label">Category</div>
-      <div class="price-cat-title">Skin Fades</div>
-      <p class="price-cat-desc">Seamless blends taken down to the skin — our signature service.</p>
+    <div class="price-cat rv" id="cat-beard">
+      <div class="price-cat-header">
+        <span class="price-cat-num">03</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Beard</div>
+        <p class="price-cat-desc">Sharp lines, clean shapes — finished to perfection.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Beard Trim &amp; Shape</div><div class="price-dur">20 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£15</div><a href="booking-system.html?barber=kate&sid=10" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Beard Fade &amp; Shape</div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£19</div><a href="booking-system.html?barber=kate&sid=11" class="price-book-btn">Book Now →</a></div>
+        </div>
+      </div>
     </div>
-    <div class="price-rows">
 
-      <div class="price-row featured rv">
-        <div class="price-row-top">
-          <div class="price-name">Skin Fade <span class="badge">Popular</span></div>
-          <div class="price-dur">30 min</div>
+    <div class="price-cat rv" id="cat-combo">
+      <div class="price-cat-header">
+        <span class="price-cat-num">04</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Haircut &amp; Beard</div>
+        <p class="price-cat-desc">The full treatment — cut and beard in one sitting.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Haircut &amp; Beard (Trim + Shape)</div><div class="price-dur">45 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£33</div><a href="booking-system.html?barber=kate&sid=12" class="price-book-btn">Book Now →</a></div>
         </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £23</div>
-          <a href="booking-system.html?sid=8" class="price-book-btn">Book Now →</a>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Haircut &amp; Beard (Fade + Shape)</div><div class="price-dur">50 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£35</div><a href="booking-system.html?barber=kate&sid=13" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d2">
+          <div class="price-row-top"><div class="price-name">Skin Fade &amp; Beard (Trim + Shape)</div><div class="price-dur">50 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£36</div><a href="booking-system.html?barber=kate&sid=14" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row featured rv d3">
+          <div class="price-row-top"><div class="price-name">Skin Fade &amp; Beard (Fade + Shape) <span class="badge">Popular</span></div><div class="price-dur">1 hour</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£40</div><a href="booking-system.html?barber=kate&sid=15" class="price-book-btn">Book Now →</a></div>
         </div>
       </div>
-
-      <div class="price-row rv d1">
-        <div class="price-row-top">
-          <div class="price-name">Back &amp; Sides (Skin Fade)</div>
-          <div class="price-dur">25–30 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £21</div>
-          <a href="booking-system.html?sid=9" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-  <!-- Beard -->
-  <div class="price-cat rv" id="cat-beard">
-    <div class="price-cat-header">
-      <span class="price-cat-num">03</span>
-      <div class="price-cat-label">Category</div>
-      <div class="price-cat-title">Beard</div>
-      <p class="price-cat-desc">Sharp lines, clean shapes. Your beard finished to perfection.</p>
+    <div class="price-cat rv" id="cat-hot-shave">
+      <div class="price-cat-header">
+        <span class="price-cat-num">05</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Hot Shave</div>
+        <p class="price-cat-desc">Traditional straight razor — a ritual as much as a service.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Hot Shave</div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£23</div><a href="booking-system.html?barber=kate&sid=17" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Hot Shave (Beard Fade)</div><div class="price-dur">35 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£25</div><a href="booking-system.html?barber=kate&sid=18" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d2">
+          <div class="price-row-top"><div class="price-name">Haircut &amp; Hot Shave</div><div class="price-dur">1 hour</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£40</div><a href="booking-system.html?barber=kate&sid=19" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d3">
+          <div class="price-row-top"><div class="price-name">Skin Fade &amp; Hot Shave</div><div class="price-dur">1 hour</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£42</div><a href="booking-system.html?barber=kate&sid=20" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Skin Fade &amp; Hot Shave (Fade + Shape)</div><div class="price-dur">1 hour</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£45</div><a href="booking-system.html?barber=kate&sid=21" class="price-book-btn">Book Now →</a></div>
+        </div>
+      </div>
     </div>
-    <div class="price-rows">
 
-      <div class="price-row rv">
-        <div class="price-row-top">
-          <div class="price-name">Beard Trim &amp; Shape</div>
-          <div class="price-dur">20 min</div>
+  </div><!-- /panel-kate -->
+
+  <!-- ═══ DILMAN ═══ -->
+  <div class="barber-panel" id="panel-dilman">
+
+    <div class="price-cat rv">
+      <div class="price-cat-header">
+        <span class="price-cat-num">01</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Haircuts</div>
+        <p class="price-cat-desc">Precision cuts shaped to complement your features.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row featured rv">
+          <div class="price-row-top"><div class="price-name">Standard Haircut <span class="badge">Popular</span></div><div class="price-dur">25 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£23</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
         </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">£15</div>
-          <a href="booking-system.html?sid=10" class="price-book-btn">Book Now →</a>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Haircut (Back + Sides)</div><div class="price-dur">20 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£21</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d2">
+          <div class="price-row-top"><div class="price-name">Scissor Cut</div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£25</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d3">
+          <div class="price-row-top"><div class="price-name">Clipper Cut (up to No.2)</div><div class="price-dur">15 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£15</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Student Haircut <span class="badge">Mon–Thu</span></div><div class="price-dur">25 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£21</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Children under 16 (excl. Skin Fade)</div><div class="price-dur">25 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£19</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
         </div>
       </div>
-
-      <div class="price-row rv d1">
-        <div class="price-row-top">
-          <div class="price-name">Beard Fade &amp; Shape</div>
-          <div class="price-dur">30 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">£19</div>
-          <a href="booking-system.html?sid=11" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-  <!-- Combinations -->
-  <div class="price-cat rv" id="cat-combo">
-    <div class="price-cat-header">
-      <span class="price-cat-num">04</span>
-      <div class="price-cat-label">Category</div>
-      <div class="price-cat-title">Haircut &amp; Beard</div>
-      <p class="price-cat-desc">The full treatment — cut and beard handled together in one sitting.</p>
+    <div class="price-cat rv">
+      <div class="price-cat-header">
+        <span class="price-cat-num">02</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Skin Fades</div>
+        <p class="price-cat-desc">Dilman's signature — seamless fades with clean lines.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row featured rv">
+          <div class="price-row-top"><div class="price-name">Skin Fade <span class="badge">Popular</span></div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£25</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Skin Fade (Back + Sides)</div><div class="price-dur">25 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£23</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+      </div>
     </div>
-    <div class="price-rows">
 
-      <div class="price-row rv">
-        <div class="price-row-top">
-          <div class="price-name">Haircut &amp; Beard (Trim + Shape)</div>
-          <div class="price-dur">45 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £33</div>
-          <a href="booking-system.html?sid=12" class="price-book-btn">Book Now →</a>
+    <div class="price-cat rv">
+      <div class="price-cat-header">
+        <span class="price-cat-num">03</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Beard</div>
+        <p class="price-cat-desc">Define your edges with expert sculpting.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Beard Fade &amp; Shape</div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£19</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
         </div>
       </div>
-
-      <div class="price-row rv d1">
-        <div class="price-row-top">
-          <div class="price-name">Haircut &amp; Beard (Fade + Shape)</div>
-          <div class="price-dur">50 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £35</div>
-          <a href="booking-system.html?sid=13" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv d2">
-        <div class="price-row-top">
-          <div class="price-name">Skin Fade &amp; Beard (Trim + Shape)</div>
-          <div class="price-dur">50 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £36</div>
-          <a href="booking-system.html?sid=14" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row featured rv d3">
-        <div class="price-row-top">
-          <div class="price-name">Skin Fade &amp; Beard (Fade + Shape) <span class="badge">Popular</span></div>
-          <div class="price-dur">1 hour</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £40</div>
-          <a href="booking-system.html?sid=15" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv">
-        <div class="price-row-top">
-          <div class="price-name">Buzz Cut &amp; Beard (Trim + Shape)</div>
-          <div class="price-dur">35 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">£30</div>
-          <a href="booking-system.html?sid=16" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-  <!-- Hot Shave -->
-  <div class="price-cat rv" id="cat-hot-shave">
-    <div class="price-cat-header">
-      <span class="price-cat-num">05</span>
-      <div class="price-cat-label">Category</div>
-      <div class="price-cat-title">Hot Shave</div>
-      <p class="price-cat-desc">Traditional straight razor — a ritual as much as a service.</p>
+    <div class="price-cat rv">
+      <div class="price-cat-header">
+        <span class="price-cat-num">04</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Haircut &amp; Beard</div>
+        <p class="price-cat-desc">Hair and beard — the complete transformation.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Buzz Cut &amp; Beard (Trim + Shape)</div><div class="price-dur">35 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£30</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Haircut &amp; Beard (Trim + Shape)</div><div class="price-dur">45 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£35</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d2">
+          <div class="price-row-top"><div class="price-name">Haircut &amp; Beard (Fade + Shape)</div><div class="price-dur">50 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£38</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d3">
+          <div class="price-row-top"><div class="price-name">Skin Fade &amp; Beard (Trim + Shape)</div><div class="price-dur">50 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£38</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row featured rv">
+          <div class="price-row-top"><div class="price-name">Skin Fade &amp; Beard (Fade + Shape) <span class="badge">Popular</span></div><div class="price-dur">1 hour</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£42</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+      </div>
     </div>
-    <div class="price-rows">
 
-      <div class="price-row rv">
-        <div class="price-row-top">
-          <div class="price-name">Hot Shave</div>
-          <div class="price-dur">30 min</div>
+    <div class="price-cat rv">
+      <div class="price-cat-header">
+        <span class="price-cat-num">05</span>
+        <div class="price-cat-label">Category</div>
+        <div class="price-cat-title">Hot Shave</div>
+        <p class="price-cat-desc">Traditional straight razor — a ritual made modern.</p>
+      </div>
+      <div class="price-rows">
+        <div class="price-row rv">
+          <div class="price-row-top"><div class="price-name">Hot Shave</div><div class="price-dur">30 min</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£25</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
         </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £23</div>
-          <a href="booking-system.html?sid=17" class="price-book-btn">Book Now →</a>
+        <div class="price-row rv d1">
+          <div class="price-row-top"><div class="price-name">Haircut &amp; Hot Shave</div><div class="price-dur">1 hour</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£44</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d2">
+          <div class="price-row-top"><div class="price-name">Skin Fade &amp; Hot Shave</div><div class="price-dur">1 hour</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£46</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
+        </div>
+        <div class="price-row rv d3">
+          <div class="price-row-top"><div class="price-name">Skin Fade &amp; Hot Shave (Fade + Shape)</div><div class="price-dur">1 hour</div></div>
+          <div class="price-row-sep"></div>
+          <div class="price-row-bottom"><div class="price-amount">£48</div><a href="booking-system.html?barber=dilman" class="price-book-btn">Book Now →</a></div>
         </div>
       </div>
-
-      <div class="price-row rv d1">
-        <div class="price-row-top">
-          <div class="price-name">Hot Shave (Beard Fade)</div>
-          <div class="price-dur">35 min</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">£25</div>
-          <a href="booking-system.html?sid=18" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv d2">
-        <div class="price-row-top">
-          <div class="price-name">Haircut &amp; Hot Shave</div>
-          <div class="price-dur">1 hour</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £40</div>
-          <a href="booking-system.html?sid=19" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv d3">
-        <div class="price-row-top">
-          <div class="price-name">Skin Fade &amp; Hot Shave</div>
-          <div class="price-dur">1 hour</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £42</div>
-          <a href="booking-system.html?sid=20" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
-      <div class="price-row rv">
-        <div class="price-row-top">
-          <div class="price-name">Skin Fade &amp; Hot Shave (Fade + Shape)</div>
-          <div class="price-dur">1 hour</div>
-        </div>
-        <div class="price-row-sep"></div>
-        <div class="price-row-bottom">
-          <div class="price-amount">from £45</div>
-          <a href="booking-system.html?sid=21" class="price-book-btn">Book Now →</a>
-        </div>
-      </div>
-
     </div>
-  </div>
+
+  </div><!-- /panel-dilman -->
 
 </section>
 
-<!-- BOOK CTA STRIP -->
+<!-- BOOK CTA -->
 <div class="book-strip">
-  <div class="book-strip-text">
+  <div>
     <div class="book-strip-h">Ready to<br><em>book?</em></div>
     <div class="book-strip-sub">Appointments available 6 days a week</div>
   </div>
@@ -665,7 +558,6 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
   </a>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="ft-logo"><img src="images/logo.svg" alt="Crown Cut" class="ft-logo-img"></div>
   <p class="ft-copy">© 2025 Crown Cut Edinburgh</p>
@@ -685,6 +577,24 @@ const obs = new IntersectionObserver((entries) => {
 document.querySelectorAll('.rv').forEach(el => obs.observe(el));
 function openMob() { document.getElementById('mobMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeMob() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow = ''; }
+
+// Barber tab switcher
+document.querySelectorAll('.barber-tab').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var target = this.dataset.target;
+    document.querySelectorAll('.barber-tab').forEach(function(b){ b.classList.remove('active'); });
+    document.querySelectorAll('.barber-panel').forEach(function(p){ p.classList.remove('active'); });
+    document.querySelectorAll('.barber-info').forEach(function(i){ i.style.display='none'; });
+    this.classList.add('active');
+    document.getElementById('panel-' + target).classList.add('active');
+    document.getElementById('barber-info-' + target).style.display='flex';
+    // re-trigger reveal animations for newly visible cards
+    document.querySelectorAll('#panel-' + target + ' .rv').forEach(function(el){
+      el.classList.remove('on');
+      setTimeout(function(){ obs.observe(el); }, 50);
+    });
+  });
+});
 </script>
 
 <script>
