@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crown Cut Edinburgh — Precision Barbershop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080D16;
+      --bg2: #0C1220;
+      --bg3: #060A12;
+      --gold: #C9A55A;
+      --gold2: #96782A;
+      --gold-faint: rgba(201,165,90,0.08);
+      --gold-mid: rgba(201,165,90,0.25);
+      --ivory: #F0EAD6;
+      --text: #B8A98A;
+      --text2: #6A5E48;
+      --border: #1A2030;
+      --border-gold: #2A2010;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── ART DECO ORNAMENT ───────────────────────────────────────── */
+    .art-deco-ornament {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 0 auto 2.5rem;
+      width: fit-content;
+    }
+    .ado-line {
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      min-width: 60px;
+    }
+    .ado-diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      margin: 0 12px;
+      flex-shrink: 0;
+    }
+    .ado-inner {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ado-inner .ado-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--gold2);
+      transform: rotate(45deg);
+    }
+
+    /* ── NAVIGATION ──────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(8,13,22,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 1.6rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+    .nav-logo-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--text2);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-book {
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      padding: 0.65rem 1.6rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s;
+    }
+    .nav-book:hover { background: var(--gold-faint); }
+
+    /* ── HERO ────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 4rem 5rem;
+      position: relative;
+      background: var(--bg);
+    }
+
+    .hero-frame {
+      position: absolute;
+      inset: 2rem;
+      border: 1px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .hero-corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+    }
+    .hero-corner::before,
+    .hero-corner::after {
+      content: '';
+      position: absolute;
+      background: var(--gold);
+    }
+
+    .hero-corner-tl { top: 2.5rem; left: 2.5rem; }
+    .hero-corner-tl::before { width: 20px; height: 1px; top: 0; left: 0; }
+    .hero-corner-tl::after  { width: 1px; height: 20px; top: 0; left: 0; }
+
+    .hero-corner-tr { top: 2.5rem; right: 2.5rem; }
+    .hero-corner-tr::before { width: 20px; height: 1px; top: 0; right: 0; left: auto; }
+    .hero-corner-tr::after  { width: 1px; height: 20px; top: 0; right: 0; left: auto; }
+
+    .hero-corner-bl { bottom: 2.5rem; left: 2.5rem; }
+    .hero-corner-bl::before { width: 20px; height: 1px; bottom: 0; left: 0; top: auto; }
+    .hero-corner-bl::after  { width: 1px; height: 20px; bottom: 0; left: 0; top: auto; }
+
+    .hero-corner-br { bottom: 2.5rem; right: 2.5rem; }
+    .hero-corner-br::before { width: 20px; height: 1px; bottom: 0; right: 0; top: auto; left: auto; }
+    .hero-corner-br::after  { width: 1px; height: 20px; bottom: 0; right: 0; top: auto; left: auto; }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: clamp(5rem, 11vw, 11rem);
+      color: var(--ivory);
+      line-height: 0.88;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-headline em {
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .hero-rule {
+      width: 120px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto;
+      display: block;
+      border: none;
+    }
+
+    .hero-subtext {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--text);
+      letter-spacing: 0.1em;
+      margin-bottom: 0;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      margin-top: 2rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      padding: 1rem 3rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+    .hero-cta:hover {
+      background: var(--gold);
+      color: #080D16;
+    }
+
+    .hero-address {
+      display: block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      margin-top: 1.8rem;
+    }
+
+    /* ── SECTION SHARED ─────────────────────────────────────────── */
+    .section-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.7rem;
+      color: var(--gold2);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--ivory);
+      margin-bottom: 1.2rem;
+    }
+    .section-heading em { font-style: italic; }
+
+    .section-rule {
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 3.5rem;
+      border: none;
+    }
+
+    /* ── SERVICES ────────────────────────────────────────────────── */
+    .services {
+      padding: 6rem 5rem;
+      background: var(--bg2);
+      text-align: center;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--border-gold);
+      max-width: 860px;
+      margin: 0 auto 3rem;
+    }
+
+    .service-card {
+      padding: 2.5rem;
+      border: 1px solid var(--border-gold);
+      text-align: center;
+      transition: background 0.3s;
+    }
+    .service-card:hover { background: var(--gold-faint); }
+
+    .service-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--gold);
+      letter-spacing: 0.3em;
+      display: block;
+      margin-bottom: 0.7rem;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: var(--ivory);
+      display: block;
+      margin-bottom: 0.6rem;
+    }
+
+    .service-ornament {
+      display: block;
+      color: var(--gold2);
+      font-size: 0.5rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.4em;
+    }
+
+    .service-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .services-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .services-link:hover { color: var(--ivory); }
+
+    /* ── STATS ───────────────────────────────────────────────────── */
+    .stats {
+      padding: 5rem;
+      border-top: 1px solid var(--border-gold);
+      border-bottom: 1px solid var(--border-gold);
+      text-align: center;
+      background: var(--bg);
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      padding: 0 5rem;
+      border-right: 1px solid var(--border-gold);
+    }
+    .stat-item:last-child { border-right: none; }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 5rem;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 0.5rem;
+    }
+
+    /* ── ABOUT / QUOTE ───────────────────────────────────────────── */
+    .about {
+      padding: 7rem 5rem;
+      text-align: center;
+      background: var(--bg);
+    }
+
+    .about-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      color: var(--ivory);
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.3;
+    }
+
+    .about-rule {
+      display: block;
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 2rem;
+      border: none;
+    }
+
+    .about-body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── CTA ─────────────────────────────────────────────────────── */
+    .cta-section {
+      padding: 7rem 5rem;
+      background: var(--bg3);
+      text-align: center;
+      position: relative;
+    }
+
+    .cta-frame {
+      position: absolute;
+      inset: 2rem;
+      border: 1px solid var(--border-gold);
+      pointer-events: none;
+    }
+
+    .cta-content { position: relative; z-index: 1; }
+
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: clamp(3rem, 7vw, 6rem);
+      color: var(--ivory);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .cta-headline em { font-style: italic; }
+
+    .cta-rule {
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 1.5rem;
+      border: none;
+    }
+
+    .cta-info {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 0;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      margin-top: 2.5rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      padding: 1rem 3rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+    .cta-btn:hover {
+      background: var(--gold);
+      color: #060A12;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────── */
+    footer {
+      padding: 3rem 5rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border-gold);
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: block;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 0.8rem;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--ivory);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-address {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      display: block;
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-rule {
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 1.5rem;
+      border: none;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-links span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--border-gold);
+    }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--text2);
+      letter-spacing: 0.18em;
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────────────── */
+    .rv {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .rv.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+    .d5 { transition-delay: 0.5s; }
+
+    /* ── MOBILE ──────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.2rem 1.8rem;
+      }
+      .nav-links { display: none; }
+
+      .hero {
+        padding: 6rem 2rem 4rem;
+      }
+      .hero-frame { inset: 1rem; }
+      .hero-corner-tl { top: 1.4rem; left: 1.4rem; }
+      .hero-corner-tr { top: 1.4rem; right: 1.4rem; }
+      .hero-corner-bl { bottom: 1.4rem; left: 1.4rem; }
+      .hero-corner-br { bottom: 1.4rem; right: 1.4rem; }
+
+      .hero-headline {
+        font-size: clamp(3.5rem, 16vw, 6rem);
+      }
+      .hero-subtext { font-size: 1.1rem; }
+
+      .services {
+        padding: 4rem 1.8rem;
+      }
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        padding: 3rem 1.8rem;
+      }
+      .stats-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+      }
+      .stat-item {
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--border-gold);
+        padding-bottom: 2rem;
+        width: 100%;
+        max-width: 260px;
+      }
+      .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+      .about {
+        padding: 4rem 2rem;
+      }
+
+      .cta-section {
+        padding: 5rem 2rem;
+      }
+      .cta-frame { inset: 1rem; }
+
+      footer {
+        padding: 2.5rem 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo-main.jpg" alt="Crown Cut Edinburgh logo" />
+      <span class="nav-logo-name">Crown Cut</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+
+    <a href="booking-system.html" class="nav-book">Book Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-frame"></div>
+    <div class="hero-corner hero-corner-tl"></div>
+    <div class="hero-corner hero-corner-tr"></div>
+    <div class="hero-corner hero-corner-bl"></div>
+    <div class="hero-corner hero-corner-br"></div>
+
+    <div class="hero-content">
+      <div class="art-deco-ornament rv">
+        <div class="ado-line"></div>
+        <div class="ado-inner">
+          <div class="ado-dot"></div>
+          <div class="ado-diamond"></div>
+          <div class="ado-dot"></div>
+        </div>
+        <div class="ado-line"></div>
+      </div>
+
+      <span class="hero-eyebrow rv d1">Est. · Edinburgh · EH3 9PP</span>
+
+      <h1 class="hero-headline rv d2">
+        Crown Cut<br><em>Edinburgh</em>
+      </h1>
+
+      <hr class="hero-rule rv d3" />
+
+      <p class="hero-subtext rv d3">Precision Barbershop</p>
+
+      <div class="art-deco-ornament rv d4" style="margin-top:2rem; margin-bottom:0;">
+        <div class="ado-line"></div>
+        <div class="ado-inner">
+          <div class="ado-dot"></div>
+          <div class="ado-diamond"></div>
+          <div class="ado-dot"></div>
+        </div>
+        <div class="ado-line"></div>
+      </div>
+
+      <a href="booking-system.html" class="hero-cta rv d4">Reserve Your Chair</a>
+
+      <span class="hero-address rv d5">119 Gilmore Place · Mon–Sat · 0131 629 7377</span>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="art-deco-ornament rv">
+      <div class="ado-line"></div>
+      <div class="ado-inner">
+        <div class="ado-dot"></div>
+        <div class="ado-diamond"></div>
+        <div class="ado-dot"></div>
+      </div>
+      <div class="ado-line"></div>
+    </div>
+
+    <h2 class="section-heading rv d1">Our <em>Services</em></h2>
+    <hr class="section-rule rv d2" />
+
+    <div class="services-grid">
+      <div class="service-card rv d1">
+        <span class="service-num">01</span>
+        <span class="service-name">Classic Cut</span>
+        <span class="service-ornament">◆</span>
+        <span class="service-price">from £21</span>
+      </div>
+      <div class="service-card rv d2">
+        <span class="service-num">02</span>
+        <span class="service-name">Skin Fade</span>
+        <span class="service-ornament">◆</span>
+        <span class="service-price">from £23</span>
+      </div>
+      <div class="service-card rv d1">
+        <span class="service-num">03</span>
+        <span class="service-name">Beard Trim & Shape</span>
+        <span class="service-ornament">◆</span>
+        <span class="service-price">from £15</span>
+      </div>
+      <div class="service-card rv d2">
+        <span class="service-num">04</span>
+        <span class="service-name">Cut & Beard</span>
+        <span class="service-ornament">◆</span>
+        <span class="service-price">from £33</span>
+      </div>
+      <div class="service-card rv d1">
+        <span class="service-num">05</span>
+        <span class="service-name">Hot Towel Shave</span>
+        <span class="service-ornament">◆</span>
+        <span class="service-price">from £23</span>
+      </div>
+      <div class="service-card rv d2">
+        <span class="service-num">06</span>
+        <span class="service-name">Junior Cut</span>
+        <span class="service-ornament">◆</span>
+        <span class="service-price">from £17</span>
+      </div>
+    </div>
+
+    <a href="pricing.html" class="services-link rv d3">View full menu &rarr;</a>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="art-deco-ornament rv">
+      <div class="ado-line"></div>
+      <div class="ado-inner">
+        <div class="ado-dot"></div>
+        <div class="ado-diamond"></div>
+        <div class="ado-dot"></div>
+      </div>
+      <div class="ado-line"></div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-item rv d1">
+        <span class="stat-number">4.8</span>
+        <span class="stat-label">Google Rating</span>
+      </div>
+      <div class="stat-item rv d2">
+        <span class="stat-number">70+</span>
+        <span class="stat-label">Reviews</span>
+      </div>
+      <div class="stat-item rv d3">
+        <span class="stat-number">6</span>
+        <span class="stat-label">Days a Week</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / QUOTE -->
+  <section class="about">
+    <div class="art-deco-ornament rv">
+      <div class="ado-line"></div>
+      <div class="ado-inner">
+        <div class="ado-dot"></div>
+        <div class="ado-diamond"></div>
+        <div class="ado-dot"></div>
+      </div>
+      <div class="ado-line"></div>
+    </div>
+
+    <blockquote class="about-quote rv d1">
+      "Not just a haircut. A craft honed over years of practice."
+    </blockquote>
+
+    <hr class="about-rule rv d2" />
+
+    <p class="about-body rv d2">
+      Situated in the heart of Gilmore Place, Crown Cut blends traditional barbering technique with contemporary style. Every client receives the same level of attention — unhurried, precise, personal.
+    </p>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="cta-frame"></div>
+
+    <div class="cta-content">
+      <div class="art-deco-ornament rv">
+        <div class="ado-line"></div>
+        <div class="ado-inner">
+          <div class="ado-dot"></div>
+          <div class="ado-diamond"></div>
+          <div class="ado-dot"></div>
+        </div>
+        <div class="ado-line"></div>
+      </div>
+
+      <h2 class="cta-headline rv d1">Book Your<br><em>Appointment</em></h2>
+      <hr class="cta-rule rv d2" />
+      <span class="cta-info rv d2">Mon–Fri 9:00–18:00 · Sat 8:30–17:00 · 0131 629 7377</span>
+      <a href="booking-system.html" class="cta-btn rv d3">Reserve Your Chair</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="art-deco-ornament rv" style="margin-bottom:1.5rem;">
+      <div class="ado-line" style="min-width:40px;"></div>
+      <div class="ado-inner">
+        <div class="ado-dot"></div>
+        <div class="ado-diamond" style="width:6px;height:6px;"></div>
+        <div class="ado-dot"></div>
+      </div>
+      <div class="ado-line" style="min-width:40px;"></div>
+    </div>
+
+    <img src="images/logo-main.jpg" alt="Crown Cut Edinburgh" class="footer-logo" />
+    <span class="footer-name">Crown Cut Edinburgh</span>
+    <span class="footer-address">119 Gilmore Place · Edinburgh EH3 9PP</span>
+
+    <hr class="footer-rule" />
+
+    <div class="footer-links">
+      <a href="booking-system.html">Book</a>
+      <span>·</span>
+      <a href="gallery.html">Gallery</a>
+      <span>·</span>
+      <a href="pricing.html">Pricing</a>
+    </div>
+
+    <p class="footer-copy">&copy; 2025 Crown Cut Edinburgh</p>
+  </footer>
+
+  <script>
+    // Scroll reveal via IntersectionObserver
+    const revealEls = document.querySelectorAll('.rv');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

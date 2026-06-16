@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template Picker — Crown Cut Edinburgh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A;--bg2:#111111;--bg3:#191919;
+  --border:#222222;--border2:#2E2E2E;
+  --white:#F6F6F2;--text:#E8E8E4;--text2:#888888;--text3:#555555;
+  --fd:'Bebas Neue',sans-serif;--fs:'Cormorant Garamond',Georgia,serif;
+  --fb:'Inter',system-ui,sans-serif;--fm:'DM Mono','Courier New',monospace;
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-weight:300;-webkit-font-smoothing:antialiased}
+
+header{padding:4rem;border-bottom:1px solid var(--border)}
+.hdr-label{font-family:var(--fm);font-size:.55rem;letter-spacing:.4em;color:var(--text3);text-transform:uppercase;margin-bottom:1rem}
+.hdr-title{font-family:var(--fd);font-size:clamp(3rem,8vw,7rem);line-height:.9;color:var(--white)}
+.hdr-title em{font-family:var(--fs);font-style:italic;color:var(--text2)}
+.hdr-sub{font-family:var(--fm);font-size:.62rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;margin-top:1.5rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1px;background:var(--border);padding:0}
+
+.card{background:var(--bg);position:relative;overflow:hidden;display:flex;flex-direction:column}
+.card-preview{width:100%;height:320px;border:none;pointer-events:none;transform-origin:top left;display:block;flex-shrink:0;overflow:hidden;position:relative;background:var(--bg3)}
+.card-preview iframe{width:200%;height:200%;transform:scale(0.5);transform-origin:top left;pointer-events:none;border:none}
+.card-preview-overlay{position:absolute;inset:0;cursor:pointer;z-index:2}
+.card-info{padding:2rem;border-top:1px solid var(--border);flex:1;display:flex;flex-direction:column;gap:1rem}
+.card-num{font-family:var(--fm);font-size:.5rem;letter-spacing:.35em;color:var(--text3);text-transform:uppercase}
+.card-name{font-family:var(--fd);font-size:1.8rem;letter-spacing:.06em;color:var(--white);line-height:1}
+.card-desc{font-family:var(--fb);font-size:.85rem;color:var(--text2);line-height:1.6;font-weight:300}
+.card-palette{display:flex;gap:6px;align-items:center;margin-top:.5rem}
+.swatch{width:18px;height:18px;border-radius:50%;flex-shrink:0}
+.card-actions{display:flex;gap:1rem;margin-top:auto;padding-top:1.5rem}
+.btn-preview{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--white);background:var(--bg3);border:1px solid var(--border2);padding:.7rem 1.4rem;text-decoration:none;transition:border-color .2s,background .2s;flex:1;text-align:center}
+.btn-preview:hover{border-color:var(--white);background:var(--bg2)}
+.btn-use{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bg);background:var(--white);border:1px solid var(--white);padding:.7rem 1.4rem;text-decoration:none;transition:background .2s;flex:1;text-align:center}
+.btn-use:hover{background:var(--text2);border-color:var(--text2)}
+
+footer{padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ft-note{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase}
+.ft-link{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;color:var(--text2);text-decoration:none;text-transform:uppercase}
+.ft-link:hover{color:var(--white)}
+
+@media(max-width:600px){
+  header{padding:2.5rem 1.5rem}
+  .grid{grid-template-columns:1fr}
+  footer{padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-label">Crown Cut Edinburgh · Design System</div>
+  <h1 class="hdr-title">Choose your<br><em>template.</em></h1>
+  <p class="hdr-sub">5 distinct premium designs · Same booking system · Pick one to set as homepage</p>
+</header>
+
+<div class="grid">
+
+  <!-- Template 1 -->
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="template-1-gold.html" loading="lazy" title="Gold Luxury preview" scrolling="no" tabindex="-1"></iframe>
+      <a class="card-preview-overlay" href="template-1-gold.html" target="_blank"></a>
+    </div>
+    <div class="card-info">
+      <div class="card-num">Template 01</div>
+      <div class="card-name">Midnight Gold</div>
+      <div class="card-desc">Deep black with gold accents. Cormorant serif headings. Savile Row luxury — opulent, classic, refined. Gold-outlined CTAs, ivory type.</div>
+      <div class="card-palette">
+        <div class="swatch" style="background:#080808;border:1px solid #333"></div>
+        <div class="swatch" style="background:#C9A84C"></div>
+        <div class="swatch" style="background:#F5EDD6"></div>
+        <div class="swatch" style="background:#8A7A64"></div>
+      </div>
+      <div class="card-actions">
+        <a href="template-1-gold.html" target="_blank" class="btn-preview">Preview Full ↗</a>
+        <a href="#use-template" class="btn-use" data-file="template-1-gold.html" onclick="setTemplate(this)">Use This →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template 2 -->
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="template-2-editorial.html" loading="lazy" title="Editorial preview" scrolling="no" tabindex="-1"></iframe>
+      <a class="card-preview-overlay" href="template-2-editorial.html" target="_blank"></a>
+    </div>
+    <div class="card-info">
+      <div class="card-num">Template 02</div>
+      <div class="card-name">Stark Editorial</div>
+      <div class="card-desc">High-contrast brutalist type. Bebas Neue at 18vw. Outline text. Red accent. Swiss editorial magazine meets New York barbershop.</div>
+      <div class="card-palette">
+        <div class="swatch" style="background:#0A0A0A;border:1px solid #333"></div>
+        <div class="swatch" style="background:#F0EEE8"></div>
+        <div class="swatch" style="background:#C41E3A"></div>
+        <div class="swatch" style="background:#525252"></div>
+      </div>
+      <div class="card-actions">
+        <a href="template-2-editorial.html" target="_blank" class="btn-preview">Preview Full ↗</a>
+        <a href="#use-template" class="btn-use" data-file="template-2-editorial.html" onclick="setTemplate(this)">Use This →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template 3 -->
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="template-3-minimal.html" loading="lazy" title="Minimal preview" scrolling="no" tabindex="-1"></iframe>
+      <a class="card-preview-overlay" href="template-3-minimal.html" target="_blank"></a>
+    </div>
+    <div class="card-info">
+      <div class="card-num">Template 03</div>
+      <div class="card-name">Refined Light</div>
+      <div class="card-desc">Cream/ivory background, black text. Extreme negative space. Swiss minimalism on fine paper. Like a Jil Sander look book.</div>
+      <div class="card-palette">
+        <div class="swatch" style="background:#F5F3EF;border:1px solid #ccc"></div>
+        <div class="swatch" style="background:#0F0F0F"></div>
+        <div class="swatch" style="background:#888888"></div>
+        <div class="swatch" style="background:#D8D6D0"></div>
+      </div>
+      <div class="card-actions">
+        <a href="template-3-minimal.html" target="_blank" class="btn-preview">Preview Full ↗</a>
+        <a href="#use-template" class="btn-use" data-file="template-3-minimal.html" onclick="setTemplate(this)">Use This →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template 4 -->
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="template-4-cinematic.html" loading="lazy" title="Cinematic preview" scrolling="no" tabindex="-1"></iframe>
+      <a class="card-preview-overlay" href="template-4-cinematic.html" target="_blank"></a>
+    </div>
+    <div class="card-info">
+      <div class="card-num">Template 04</div>
+      <div class="card-name">Cinematic</div>
+      <div class="card-desc">Ultra-dark, film-frame proportions. Typography at cinema-credit scale. Almost no chrome. Pure atmosphere — like a Kubrick title card.</div>
+      <div class="card-palette">
+        <div class="swatch" style="background:#060606;border:1px solid #333"></div>
+        <div class="swatch" style="background:#EDE8DF"></div>
+        <div class="swatch" style="background:#A8A09A"></div>
+        <div class="swatch" style="background:#4A4845"></div>
+      </div>
+      <div class="card-actions">
+        <a href="template-4-cinematic.html" target="_blank" class="btn-preview">Preview Full ↗</a>
+        <a href="#use-template" class="btn-use" data-file="template-4-cinematic.html" onclick="setTemplate(this)">Use This →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Template 5 -->
+  <div class="card">
+    <div class="card-preview">
+      <iframe src="template-5-artdeco.html" loading="lazy" title="Art Deco preview" scrolling="no" tabindex="-1"></iframe>
+      <a class="card-preview-overlay" href="template-5-artdeco.html" target="_blank"></a>
+    </div>
+    <div class="card-info">
+      <div class="card-num">Template 05</div>
+      <div class="card-name">Art Deco</div>
+      <div class="card-desc">Midnight navy, gold ornaments, geometric symmetry. 1920s luxury barbershop energy. Diamond dividers, inset frames, ivory type.</div>
+      <div class="card-palette">
+        <div class="swatch" style="background:#080D16;border:1px solid #333"></div>
+        <div class="swatch" style="background:#C9A55A"></div>
+        <div class="swatch" style="background:#F0EAD6"></div>
+        <div class="swatch" style="background:#6A5E48"></div>
+      </div>
+      <div class="card-actions">
+        <a href="template-5-artdeco.html" target="_blank" class="btn-preview">Preview Full ↗</a>
+        <a href="#use-template" class="btn-use" data-file="template-5-artdeco.html" onclick="setTemplate(this)">Use This →</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer id="use-template">
+  <div class="ft-note">Crown Cut Edinburgh · 5 Templates Ready</div>
+  <a href="index.html" class="ft-link">← Back to Current Site</a>
+</footer>
+
+<script>
+function setTemplate(el) {
+  const file = el.dataset.file;
+  const name = el.closest('.card').querySelector('.card-name').textContent;
+  if (confirm(`Set "${name}" as your homepage (index.html)?\n\nThis will copy ${file} to index.html. Your current index.html will be saved as index-backup.html.`)) {
+    alert(`To set this template as your homepage, tell Claude:\n\n"Set template ${file.replace('template-','').replace('.html','')} as my homepage"\n\nClaude will copy ${file} → index.html and deploy it.`);
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crown Cut Edinburgh — Barbershop</title>
+  <meta name="description" content="Crown Cut Edinburgh. Traditional barbering with contemporary precision. 119 Gilmore Place, Edinburgh EH3 9PP." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #060606;
+      --bg2:     #0A0A0A;
+      --paper:   #EDE8DF;
+      --text:    #A8A09A;
+      --text2:   #4A4845;
+      --border:  #161616;
+      --border2: #202020;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; }
+
+    /* ── SCROLL REVEAL ── */
+    .rv {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .rv.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 2rem 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      background: transparent;
+      transition: background 0.4s, border-color 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(6,6,6,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-logo img {
+      border-radius: 50%;
+      object-fit: cover;
+      width: 44px;
+      height: 44px;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--paper); }
+    .nav-links a.nav-book { color: var(--paper); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 5rem 0;
+      background: var(--bg);
+    }
+
+    .hero-film-edge {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, transparent, var(--paper), transparent);
+      pointer-events: none;
+    }
+
+    .hero-position {
+      position: absolute;
+      top: 2rem;
+      left: 5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .hero-content {
+      padding-bottom: 0;
+    }
+    .hero-line1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(6rem, 14vw, 14rem);
+      color: var(--paper);
+      line-height: 0.85;
+      display: block;
+    }
+    .hero-line2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 13vw, 13rem);
+      color: var(--paper);
+      line-height: 0.85;
+      letter-spacing: 0.05em;
+      display: block;
+    }
+    .hero-sub {
+      margin-top: 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .hero-bar {
+      margin-top: 4rem;
+      width: calc(100% + 10rem);
+      margin-left: -5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 5rem;
+      background: var(--bg2);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .hero-bar-items {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .hero-bar-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.12em;
+    }
+    .hero-bar-sep {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--border2);
+      margin: 0 1rem;
+    }
+    .hero-bar-cta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--paper);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: opacity 0.25s;
+    }
+    .hero-bar-cta:hover { opacity: 0.7; }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 0 5rem;
+      background: var(--bg);
+    }
+
+    .services-header {
+      border-bottom: 1px solid var(--border);
+      padding: 4rem 0 2rem;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .services-header-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      color: var(--paper);
+    }
+    .services-header-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.1em;
+    }
+
+    .service-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .service-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--text2);
+      letter-spacing: 0.15em;
+      min-width: 2.5rem;
+    }
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--paper);
+      letter-spacing: 0.08em;
+      flex: 1;
+    }
+    .service-duration {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.1em;
+      min-width: 5rem;
+      text-align: right;
+    }
+    .service-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.5rem;
+      color: var(--paper);
+      min-width: 6rem;
+      text-align: right;
+    }
+
+    /* ── WIDE QUOTE ── */
+    .quote-section {
+      padding: 8rem 5rem;
+      border-top: 1px solid var(--border);
+    }
+    .quote-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      color: var(--paper);
+      line-height: 1.1;
+      max-width: 900px;
+      font-weight: 300;
+    }
+    .quote-body {
+      margin-top: 2.5rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--text);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      padding: 5rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr 1px 1fr;
+      align-items: center;
+    }
+    .stat-block {
+      text-align: center;
+      padding: 1rem 2rem;
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 7rem;
+      color: var(--paper);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      display: block;
+    }
+    .stat-divider {
+      background: var(--border2);
+      height: 80px;
+      align-self: center;
+      width: 1px;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem;
+      border-top: 1px solid var(--border);
+    }
+    .cta-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--text2);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .cta-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(4rem, 9vw, 9rem);
+      color: var(--paper);
+      line-height: 0.9;
+      font-weight: 300;
+    }
+    .cta-btn {
+      margin-top: 3rem;
+      display: inline-block;
+      border: 1px solid var(--text2);
+      color: var(--paper);
+      background: transparent;
+      padding: 1rem 3rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.3s;
+    }
+    .cta-btn:hover { border-color: var(--paper); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-brand img {
+      border-radius: 50%;
+      object-fit: cover;
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+    .footer-brand-name {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--text2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .footer-address {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--text2);
+      letter-spacing: 0.1em;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5rem;
+      color: var(--text2);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.5rem 1.5rem;
+      }
+      .nav-links a:not(.nav-book) {
+        display: none;
+      }
+      .nav-links { gap: 1.5rem; }
+
+      .hero {
+        padding: 0 1.5rem 0;
+      }
+      .hero-position {
+        left: 1.5rem;
+        top: 1.5rem;
+      }
+      .hero-bar {
+        width: calc(100% + 3rem);
+        margin-left: -1.5rem;
+        padding: 1.25rem 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .hero-bar-items {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+      }
+
+      .services {
+        padding: 0 1.5rem;
+      }
+      .services-header {
+        padding: 3rem 0 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .service-row {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .service-name { font-size: 1.5rem; }
+      .service-price { font-size: 1.2rem; }
+
+      .quote-section {
+        padding: 5rem 1.5rem;
+      }
+
+      .stats {
+        padding: 3rem 1.5rem;
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .stat-divider {
+        width: 80px;
+        height: 1px;
+        justify-self: center;
+        margin: 0.5rem 0;
+      }
+      .stat-number { font-size: 5rem; }
+
+      .cta-section { padding: 5rem 1.5rem; }
+
+      footer {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        gap: 1.25rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav id="mainNav">
+    <div class="nav-logo">
+      <img src="images/logo-main.jpg" alt="Crown Cut Edinburgh" />
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="booking-system.html" class="nav-book">Book &rarr;</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-film-edge"></div>
+
+    <div class="hero-position">01 / 01 &nbsp;&middot;&nbsp; HERO</div>
+
+    <div class="hero-content rv">
+      <span class="hero-line1">Crown</span>
+      <span class="hero-line2">Cut.</span>
+      <p class="hero-sub">Edinburgh&rsquo;s finest barbershop</p>
+    </div>
+
+    <div class="hero-bar">
+      <div class="hero-bar-items">
+        <span class="hero-bar-item">119 Gilmore Place</span>
+        <span class="hero-bar-sep">&middot;</span>
+        <span class="hero-bar-item">EH3 9PP</span>
+        <span class="hero-bar-sep">&middot;</span>
+        <span class="hero-bar-item">Mon&ndash;Sat</span>
+        <span class="hero-bar-sep">&middot;</span>
+        <span class="hero-bar-item">4.8&starf; Rating</span>
+        <span class="hero-bar-sep">&middot;</span>
+        <span class="hero-bar-item">0131 629 7377</span>
+      </div>
+      <a href="booking-system.html" class="hero-bar-cta">Book an appointment &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section class="services" id="services">
+    <div class="services-header rv">
+      <span class="services-header-label">Services</span>
+      <span class="services-header-meta">06 Services &middot; From &pound;15</span>
+    </div>
+
+    <div class="service-row rv">
+      <span class="service-num">&mdash;01</span>
+      <span class="service-name">Classic Cut</span>
+      <span class="service-duration">30 min</span>
+      <span class="service-price">from &pound;21</span>
+    </div>
+
+    <div class="service-row rv">
+      <span class="service-num">&mdash;02</span>
+      <span class="service-name">Skin Fade</span>
+      <span class="service-duration">30 min</span>
+      <span class="service-price">from &pound;23</span>
+    </div>
+
+    <div class="service-row rv">
+      <span class="service-num">&mdash;03</span>
+      <span class="service-name">Beard Trim &amp; Shape</span>
+      <span class="service-duration">20 min</span>
+      <span class="service-price">from &pound;15</span>
+    </div>
+
+    <div class="service-row rv">
+      <span class="service-num">&mdash;04</span>
+      <span class="service-name">Cut &amp; Beard</span>
+      <span class="service-duration">45 min</span>
+      <span class="service-price">from &pound;33</span>
+    </div>
+
+    <div class="service-row rv">
+      <span class="service-num">&mdash;05</span>
+      <span class="service-name">Hot Towel Shave</span>
+      <span class="service-duration">30 min</span>
+      <span class="service-price">from &pound;23</span>
+    </div>
+
+    <div class="service-row rv">
+      <span class="service-num">&mdash;06</span>
+      <span class="service-name">Junior Cut</span>
+      <span class="service-duration">25 min</span>
+      <span class="service-price">from &pound;17</span>
+    </div>
+  </section>
+
+  <!-- ── WIDE QUOTE ── -->
+  <section class="quote-section">
+    <p class="quote-eyebrow rv">&mdash; About Crown Cut</p>
+    <blockquote class="quote-text rv">
+      &ldquo;Not just a haircut. A craft honed over years of practice.&rdquo;
+    </blockquote>
+    <p class="quote-body rv">
+      Situated at 119 Gilmore Place in the heart of Edinburgh, Crown Cut delivers traditional barbering with contemporary precision. Every client. Every time.
+    </p>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="stats">
+    <div class="stat-block rv">
+      <span class="stat-number">4.8</span>
+      <span class="stat-label">Google Rating</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block rv">
+      <span class="stat-number">70+</span>
+      <span class="stat-label">Reviews</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block rv">
+      <span class="stat-number">6</span>
+      <span class="stat-label">Days a Week</span>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section">
+    <p class="cta-eyebrow rv">&mdash; Ready?</p>
+    <h2 class="cta-headline rv">Book your<br><em>appointment.</em></h2>
+    <a href="booking-system.html" class="cta-btn rv">Reserve Your Chair</a>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-brand">
+      <img src="images/logo-main.jpg" alt="Crown Cut Edinburgh" />
+      <span class="footer-brand-name">Crown Cut Edinburgh</span>
+    </div>
+    <span class="footer-address">119 Gilmore Place &middot; EH3 9PP</span>
+    <span class="footer-copy">&copy; 2025</span>
+  </footer>
+
+  <script>
+    // ── Nav scroll behaviour
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    // ── Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.rv').forEach((el, i) => {
+      el.style.transitionDelay = (i % 6) * 0.07 + 's';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
