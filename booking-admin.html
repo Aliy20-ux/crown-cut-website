@@ -558,5 +558,23 @@ async function adminMarkPaid(ref) {
 const saved = sessionStorage.getItem('cc_staff_token');
 if (saved) { token = saved; bootApp(); }
 </script>
+
+<script>
+(function(){
+  var ov=document.createElement('div');
+  Object.assign(ov.style,{position:'fixed',inset:'0',background:'#0A0A0A',zIndex:'9999',opacity:'1',pointerEvents:'all',transition:'opacity .55s cubic-bezier(.16,1,.3,1)'});
+  document.body.appendChild(ov);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){ov.style.opacity='0';ov.style.pointerEvents='none';});});
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href]');
+    if(!a)return;
+    var h=a.getAttribute('href');
+    if(!h||h.startsWith('#')||h.startsWith('http')||h.startsWith('mailto:')||h.startsWith('tel:')||a.target==='_blank')return;
+    e.preventDefault();
+    ov.style.opacity='1';ov.style.pointerEvents='all';
+    setTimeout(function(){location.href=h;},550);
+  });
+})();
+</script>
 </body>
 </html>
