@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Crown Cut Edinburgh</title>
+<meta name="description" content="Crown Cut Edinburgh gallery — precision cuts, skin fades, textured crops and beard work at 119 Gilmore Place.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A;--bg2:#111111;--bg3:#191919;
+  --border:#222222;--border2:#2E2E2E;
+  --text:#E8E8E4;--text2:#888888;--text3:#555555;
+  --white:#F6F6F2;--g100:#DDDDD8;--g200:#ABABAB;--g600:#555555;--g800:#282828;
+  --fd:'Bebas Neue','Arial Narrow',sans-serif;
+  --fs:'Cormorant Garamond',Georgia,serif;
+  --fb:'Inter',system-ui,sans-serif;
+  --fm:'DM Mono','Courier New',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:padding .4s,background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{padding:1.1rem 4rem;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-color:var(--border)}
+.nav-logo{text-decoration:none;display:flex;flex-direction:column}
+.nav-logo-main{font-family:var(--fd);font-size:1.4rem;letter-spacing:.3em;color:var(--white);line-height:1}
+.nav-logo-sub{font-family:var(--fm);font-size:.55rem;letter-spacing:.35em;color:var(--text3);text-transform:uppercase;margin-top:3px}
+.nav-links{display:flex;gap:2.8rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--fm);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-book{font-family:var(--fm);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bg);background:var(--white);padding:.65rem 1.6rem;text-decoration:none;transition:background .2s,transform .2s}
+.nav-book:hover{background:var(--g100);transform:translateY(-1px)}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-ham span{display:block;width:22px;height:1px;background:var(--white);transition:all .3s}
+
+/* MOBILE MENU */
+.mob-menu{position:fixed;inset:0;background:var(--bg);z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.mob-menu.open{opacity:1;visibility:visible}
+.mob-menu a{font-family:var(--fd);font-size:clamp(2rem,8vw,3.5rem);letter-spacing:.15em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s}
+.mob-menu a:hover{color:var(--white)}
+.mob-close{position:absolute;top:1.8rem;right:2.5rem;background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:.65rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase}
+
+/* PAGE HEADER */
+.page-header{padding:10rem 4rem 5rem;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.page-header-grain{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px;pointer-events:none}
+.page-header-eyebrow{font-family:var(--fm);font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;position:relative}
+.page-header-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--text3)}
+.page-header-back{font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:color .2s;position:relative;margin-bottom:3rem}
+.page-header-back:hover{color:var(--text2)}
+.page-header-back svg{transform:rotate(180deg);transition:transform .2s}
+.page-header-back:hover svg{transform:rotate(180deg) translateX(4px)}
+.page-title{font-family:var(--fd);font-size:clamp(5rem,14vw,13rem);line-height:.88;color:var(--white);position:relative}
+.page-title em{font-family:var(--fs);font-style:italic;color:var(--g200)}
+.page-subtitle{font-family:var(--fs);font-size:clamp(1rem,1.8vw,1.3rem);font-style:italic;color:var(--text2);margin-top:2rem;max-width:480px;line-height:1.6;position:relative}
+.page-count{font-family:var(--fm);font-size:.58rem;letter-spacing:.3em;color:var(--text3);text-transform:uppercase;margin-top:1rem;position:relative}
+
+/* GALLERY GRID */
+.gallery-section{padding:4rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
+.gallery-item{background:var(--bg3);position:relative;overflow:hidden;cursor:pointer}
+.gallery-item:nth-child(1){grid-column:span 2}
+.gallery-inner{width:100%;height:100%;min-height:400px;position:relative;overflow:hidden}
+.gallery-item:nth-child(1) .gallery-inner{min-height:600px}
+.gallery-img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.gallery-item:hover .gallery-img{transform:scale(1.05)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.05) 45%,transparent 100%);opacity:0;transition:opacity .35s;z-index:2}
+.gallery-item:hover::after{opacity:1}
+.gallery-meta{position:absolute;bottom:0;left:0;right:0;padding:1.5rem 1.8rem;z-index:3;transform:translateY(8px);opacity:0;transition:opacity .35s,transform .35s cubic-bezier(.16,1,.3,1)}
+.gallery-item:hover .gallery-meta{opacity:1;transform:translateY(0)}
+.gallery-lbl{font-family:var(--fm);font-size:.62rem;letter-spacing:.28em;color:var(--white);text-transform:uppercase;display:block;margin-bottom:.3rem}
+.gallery-num{font-family:var(--fm);font-size:.5rem;letter-spacing:.25em;color:rgba(255,255,255,.4);text-transform:uppercase}
+
+/* BOOK CTA STRIP */
+.book-strip{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.book-strip-text{}
+.book-strip-h{font-family:var(--fd);font-size:clamp(2rem,5vw,4rem);color:var(--white);line-height:.9;margin-bottom:.6rem}
+.book-strip-h em{font-family:var(--fs);font-style:italic;color:var(--g200)}
+.book-strip-sub{font-family:var(--fm);font-size:.6rem;letter-spacing:.25em;color:var(--text3);text-transform:uppercase}
+.book-strip-btn{font-family:var(--fm);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--bg);background:var(--white);padding:1.1rem 2.5rem;text-decoration:none;transition:background .2s,transform .2s;flex-shrink:0;display:inline-flex;align-items:center;gap:.8rem}
+.book-strip-btn:hover{background:var(--g100);transform:translateY(-1px)}
+.book-strip-btn svg{transition:transform .2s}
+.book-strip-btn:hover svg{transform:translateX(4px)}
+
+/* FOOTER */
+footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.ft-logo{font-family:var(--fd);font-size:1.2rem;letter-spacing:.28em;color:var(--text3)}
+.ft-copy{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase}
+.ft-links{display:flex;gap:2.5rem;list-style:none}
+.ft-links a{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--text2)}
+
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox-img{max-width:90vw;max-height:88vh;object-fit:contain;border:1px solid var(--border)}
+.lightbox-close{position:absolute;top:2rem;right:2rem;background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:.65rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase;transition:color .2s}
+.lightbox-close:hover{color:var(--white)}
+.lightbox-nav{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:1.5rem}
+.lightbox-btn{background:none;border:1px solid var(--border);color:var(--text3);cursor:pointer;width:36px;height:36px;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s}
+.lightbox-btn:hover{border-color:var(--text2);color:var(--white)}
+.lightbox-counter{font-family:var(--fm);font-size:.6rem;letter-spacing:.25em;color:var(--text3);min-width:50px;text-align:center}
+.lightbox-lbl{position:absolute;bottom:2rem;left:4rem;font-family:var(--fm);font-size:.6rem;letter-spacing:.28em;color:var(--text3);text-transform:uppercase}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+.rv.d4{transition-delay:.32s}.rv.d5{transition-delay:.4s}.rv.d6{transition-delay:.48s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.5rem 1.8rem}
+  nav.scrolled{padding:1rem 1.8rem}
+  .nav-links,.nav-book{display:none}
+  .nav-ham{display:flex}
+  .page-header{padding:7rem 1.8rem 3.5rem}
+  .gallery-section{padding:2rem 1.8rem}
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-item:nth-child(1){grid-column:span 1}
+  .gallery-inner{min-height:300px!important}
+  .book-strip{padding:3rem 1.8rem;flex-direction:column;align-items:flex-start}
+  footer{padding:2rem 1.8rem;flex-direction:column;align-items:flex-start;gap:1.2rem}
+  .mob-close{right:2rem}
+  .lightbox-lbl{left:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">Close ✕</button>
+  <a href="index.html#services" onclick="closeMob()">Services</a>
+  <a href="index.html#about" onclick="closeMob()">About</a>
+  <a href="gallery.html" onclick="closeMob()">Gallery</a>
+  <a href="index.html#reviews" onclick="closeMob()">Reviews</a>
+  <a href="index.html#contact" onclick="closeMob()">Contact</a>
+  <a href="https://crowncut.booksy.com" target="_blank" onclick="closeMob()">Book Now →</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-main">Crown Cut</span>
+    <span class="nav-logo-sub">Edinburgh · Gilmore Place</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="index.html#reviews">Reviews</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <a href="https://crowncut.booksy.com" target="_blank" class="nav-book">Book Now</a>
+  <button class="nav-ham" onclick="openMob()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="page-header-grain"></div>
+  <a href="index.html" class="page-header-back">
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    Back to Home
+  </a>
+  <div class="page-header-eyebrow">Crown Cut Edinburgh</div>
+  <h1 class="page-title">Our<br><em>Work.</em></h1>
+  <p class="page-subtitle">Every photo is a finished cut straight out of the chair. No filters, no retouching — just precision barbering.</p>
+  <p class="page-count">7 photos · Click to enlarge</p>
+</header>
+
+<!-- GALLERY -->
+<section class="gallery-section">
+  <div class="gallery-grid">
+    <div class="gallery-item rv" data-index="0">
+      <div class="gallery-inner">
+        <img class="gallery-img" src="images/image-1.jpeg" alt="Skin Fade — Crown Cut Edinburgh">
+        <div class="gallery-meta"><span class="gallery-lbl">Skin Fade</span><span class="gallery-num">01 / 07</span></div>
+      </div>
+    </div>
+    <div class="gallery-item rv d1" data-index="1">
+      <div class="gallery-inner">
+        <img class="gallery-img" src="images/image-2.jpeg" alt="Textured Crop — Crown Cut Edinburgh">
+        <div class="gallery-meta"><span class="gallery-lbl">Textured Crop</span><span class="gallery-num">02 / 07</span></div>
+      </div>
+    </div>
+    <div class="gallery-item rv d2" data-index="2">
+      <div class="gallery-inner">
+        <img class="gallery-img" src="images/image-3.jpeg" alt="Mid Fade — Crown Cut Edinburgh">
+        <div class="gallery-meta"><span class="gallery-lbl">Mid Fade</span><span class="gallery-num">03 / 07</span></div>
+      </div>
+    </div>
+    <div class="gallery-item rv d3" data-index="3">
+      <div class="gallery-inner">
+        <img class="gallery-img" src="images/image-4.jpeg" alt="Low Taper — Crown Cut Edinburgh">
+        <div class="gallery-meta"><span class="gallery-lbl">Low Taper</span><span class="gallery-num">04 / 07</span></div>
+      </div>
+    </div>
+    <div class="gallery-item rv d4" data-index="4">
+      <div class="gallery-inner">
+        <img class="gallery-img" src="images/image-5.jpeg" alt="Crop & Fade — Crown Cut Edinburgh">
+        <div class="gallery-meta"><span class="gallery-lbl">Crop & Fade</span><span class="gallery-num">05 / 07</span></div>
+      </div>
+    </div>
+    <div class="gallery-item rv d5" data-index="5">
+      <div class="gallery-inner">
+        <img class="gallery-img" src="images/image-6.jpeg" alt="Skin Buzz — Crown Cut Edinburgh">
+        <div class="gallery-meta"><span class="gallery-lbl">Skin Buzz</span><span class="gallery-num">06 / 07</span></div>
+      </div>
+    </div>
+    <div class="gallery-item rv d6" data-index="6">
+      <div class="gallery-inner">
+        <img class="gallery-img" src="images/image-7.jpeg" alt="Textured Fade — Crown Cut Edinburgh">
+        <div class="gallery-meta"><span class="gallery-lbl">Textured Fade</span><span class="gallery-num">07 / 07</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK CTA STRIP -->
+<div class="book-strip">
+  <div class="book-strip-text">
+    <div class="book-strip-h">Like what<br>you <em>see?</em></div>
+    <div class="book-strip-sub">Book your appointment online in seconds</div>
+  </div>
+  <a href="https://crowncut.booksy.com" target="_blank" class="book-strip-btn">
+    Book on Booksy
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">Crown Cut</div>
+  <p class="ft-copy">© 2025 Crown Cut Edinburgh</p>
+  <ul class="ft-links">
+    <li><a href="https://crowncut.booksy.com" target="_blank">Book</a></li>
+    <li><a href="tel:01316297377">Call</a></li>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">Close ✕</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <span class="lightbox-lbl" id="lightboxLbl"></span>
+  <div class="lightbox-nav">
+    <button class="lightbox-btn" onclick="prevImage()">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+    </button>
+    <span class="lightbox-counter" id="lightboxCounter">1 / 7</span>
+    <button class="lightbox-btn" onclick="nextImage()">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+
+// Scroll reveals
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+// Mobile menu
+function openMob() { document.getElementById('mobMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow = ''; }
+
+// Lightbox
+const images = [
+  { src: 'images/image-1.jpeg', label: 'Skin Fade' },
+  { src: 'images/image-2.jpeg', label: 'Textured Crop' },
+  { src: 'images/image-3.jpeg', label: 'Mid Fade' },
+  { src: 'images/image-4.jpeg', label: 'Low Taper' },
+  { src: 'images/image-5.jpeg', label: 'Crop & Fade' },
+  { src: 'images/image-6.jpeg', label: 'Skin Buzz' },
+  { src: 'images/image-7.jpeg', label: 'Textured Fade' },
+];
+let currentIndex = 0;
+
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('click', () => {
+    currentIndex = parseInt(item.dataset.index);
+    openLightbox(currentIndex);
+  });
+});
+
+function openLightbox(index) {
+  const lb = document.getElementById('lightbox');
+  updateLightboxImage(index);
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function updateLightboxImage(index) {
+  document.getElementById('lightboxImg').src = images[index].src;
+  document.getElementById('lightboxImg').alt = images[index].label + ' — Crown Cut Edinburgh';
+  document.getElementById('lightboxLbl').textContent = images[index].label;
+  document.getElementById('lightboxCounter').textContent = (index + 1) + ' / ' + images.length;
+  currentIndex = index;
+}
+function prevImage() { updateLightboxImage((currentIndex - 1 + images.length) % images.length); }
+function nextImage() { updateLightboxImage((currentIndex + 1) % images.length); }
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (document.getElementById('lightbox').classList.contains('open')) {
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'Escape') closeLightbox();
+  }
+});
+</script>
+</body>
+</html>

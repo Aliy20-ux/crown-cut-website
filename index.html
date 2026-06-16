@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crown Cut — Edinburgh Premium Barbershop</title>
+<meta name="description" content="Edinburgh's finest barbershop at 119 Gilmore Place. Precision cuts, expert fades, traditional shaves. Book online via Booksy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A;--bg2:#111111;--bg3:#191919;
+  --border:#222222;--border2:#2E2E2E;
+  --text:#E8E8E4;--text2:#888888;--text3:#555555;
+  --white:#F6F6F2;--g100:#DDDDD8;--g200:#ABABAB;--g600:#555555;--g800:#282828;
+  --fd:'Bebas Neue','Arial Narrow',sans-serif;
+  --fs:'Cormorant Garamond',Georgia,serif;
+  --fb:'Inter',system-ui,sans-serif;
+  --fm:'DM Mono','Courier New',monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* PRELOADER */
+#pre{position:fixed;inset:0;background:#0A0A0A;z-index:1000;display:flex;align-items:center;justify-content:center;transition:opacity .7s ease,visibility .7s}
+#pre.gone{opacity:0;visibility:hidden;pointer-events:none}
+.pre-inner{overflow:hidden}
+.pre-text{font-family:var(--fd);font-size:clamp(2.5rem,8vw,6rem);letter-spacing:.4em;color:var(--white);display:flex;gap:0}
+.pre-text span{display:inline-block;transform:translateY(110%);animation:preUp .9s cubic-bezier(.16,1,.3,1) forwards}
+.pre-text span:nth-child(1){animation-delay:.05s}.pre-text span:nth-child(2){animation-delay:.1s}
+.pre-text span:nth-child(3){animation-delay:.15s}.pre-text span:nth-child(4){animation-delay:.2s}
+.pre-text span:nth-child(5){animation-delay:.25s}.pre-text span:nth-child(6){animation-delay:.3s}
+.pre-text span:nth-child(7){animation-delay:.35s}.pre-text span:nth-child(8){animation-delay:.4s}
+.pre-text span:nth-child(9){animation-delay:.45s}
+@keyframes preUp{to{transform:translateY(0)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.8rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:padding .4s,background .4s,border-color .4s;border-bottom:1px solid transparent}
+nav.scrolled{padding:1.1rem 4rem;background:rgba(10,10,10,.92);backdrop-filter:blur(20px);border-color:var(--border)}
+.nav-logo{text-decoration:none;display:flex;flex-direction:column}
+.nav-logo-main{font-family:var(--fd);font-size:1.4rem;letter-spacing:.3em;color:var(--white);line-height:1}
+.nav-logo-sub{font-family:var(--fm);font-size:.55rem;letter-spacing:.35em;color:var(--text3);text-transform:uppercase;margin-top:3px}
+.nav-links{display:flex;gap:2.8rem;list-style:none;align-items:center}
+.nav-links a{font-family:var(--fm);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-book{font-family:var(--fm);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bg);background:var(--white);padding:.65rem 1.6rem;text-decoration:none;transition:background .2s,transform .2s}
+.nav-book:hover{background:var(--g100);transform:translateY(-1px)}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-ham span{display:block;width:22px;height:1px;background:var(--white);transition:all .3s}
+
+/* MOBILE MENU */
+.mob-menu{position:fixed;inset:0;background:var(--bg);z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.mob-menu.open{opacity:1;visibility:visible}
+.mob-menu a{font-family:var(--fd);font-size:clamp(2rem,8vw,3.5rem);letter-spacing:.15em;text-transform:uppercase;color:var(--text2);text-decoration:none;transition:color .2s}
+.mob-menu a:hover{color:var(--white)}
+.mob-close{position:absolute;top:1.8rem;right:2.5rem;background:none;border:none;cursor:pointer;font-family:var(--fm);font-size:.65rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase}
+
+/* HERO */
+.hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4rem 5rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 75% 15%,rgba(255,255,255,.025) 0%,transparent 70%),linear-gradient(180deg,transparent 40%,rgba(0,0,0,.75) 100%);z-index:0}
+.hero-grain{position:absolute;inset:0;opacity:.04;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
+.hero-eyebrow{position:relative;z-index:2;font-family:var(--fm);font-size:.65rem;letter-spacing:.45em;text-transform:uppercase;color:var(--text3);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem;opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+.hero-eyebrow::before{content:'';display:block;width:36px;height:1px;background:var(--text3)}
+body.loaded .hero-eyebrow{opacity:1;transform:translateY(0);transition-delay:.15s}
+.hero-title{position:relative;z-index:2;font-family:var(--fd);font-size:clamp(5rem,15vw,15rem);line-height:.88;color:var(--white)}
+.htl{overflow:hidden;display:block}
+.htl span{display:block;transform:translateY(110%);transition:transform 1.1s cubic-bezier(.16,1,.3,1)}
+body.loaded .htl span{transform:translateY(0)}
+body.loaded .htl:nth-child(2) span{transition-delay:.12s}
+.hero-bottom{position:relative;z-index:2;margin-top:2.5rem;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem}
+.hero-desc{font-family:var(--fs);font-size:clamp(.95rem,1.8vw,1.25rem);font-style:italic;font-weight:300;color:var(--text2);max-width:380px;line-height:1.65;opacity:0;transform:translateY(16px);transition:opacity .8s,transform .8s cubic-bezier(.16,1,.3,1)}
+body.loaded .hero-desc{opacity:1;transform:translateY(0);transition-delay:.35s}
+.hero-meta{text-align:right;flex-shrink:0;opacity:0;transform:translateY(16px);transition:opacity .8s,transform .8s cubic-bezier(.16,1,.3,1)}
+body.loaded .hero-meta{opacity:1;transform:translateY(0);transition-delay:.5s}
+.hero-rating-num{font-family:var(--fd);font-size:3.5rem;color:var(--white);line-height:1}
+.hero-rating-sub{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;color:var(--text3);text-transform:uppercase;margin-top:4px}
+.hero-scroll{position:absolute;bottom:4rem;right:4rem;z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll span{font-family:var(--fm);font-size:.55rem;letter-spacing:.3em;color:var(--text3);text-transform:uppercase;writing-mode:vertical-rl}
+.hero-scroll-line{width:1px;height:55px;background:linear-gradient(to bottom,var(--text3),transparent);animation:scrollPulse 2.5s ease infinite}
+@keyframes scrollPulse{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* MARQUEE */
+.mq{border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;padding:.9rem 0;background:var(--bg2)}
+.mq-track{display:flex;white-space:nowrap;animation:mqScroll 28s linear infinite}
+.mq-item{font-family:var(--fd);font-size:.85rem;letter-spacing:.4em;text-transform:uppercase;color:var(--text3);padding:0 2rem;flex-shrink:0}
+@keyframes mqScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SHARED SECTION */
+.sec{padding:8rem 4rem}
+.sec-label{font-family:var(--fm);font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;color:var(--text3);display:flex;align-items:center;gap:1rem;margin-bottom:3rem}
+.sec-label::before{content:'';display:block;width:28px;height:1px;background:var(--text3)}
+.sec-h{font-family:var(--fd);font-size:clamp(3rem,7vw,7rem);line-height:.9;color:var(--white)}
+.sec-h em{font-family:var(--fs);font-style:italic;color:var(--g200)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+/* SERVICES */
+.svc{background:var(--bg)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:4rem}
+.svc-card{background:var(--bg);padding:2.5rem;transition:background .3s;position:relative;overflow:hidden}
+.svc-card:hover{background:var(--bg2)}
+.svc-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:var(--white);transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.svc-card:hover::before{transform:scaleY(1)}
+.svc-num{font-family:var(--fm);font-size:.55rem;letter-spacing:.3em;color:var(--text3);margin-bottom:1.2rem}
+.svc-name{font-family:var(--fd);font-size:1.75rem;letter-spacing:.08em;color:var(--white);margin-bottom:.6rem;line-height:1}
+.svc-desc{font-size:.8rem;font-weight:300;color:var(--text3);line-height:1.75;max-width:280px}
+.svc-price{margin-top:1.4rem;font-family:var(--fs);font-size:1.05rem;color:var(--text2);font-style:italic}
+
+/* ABOUT */
+.abt{background:var(--bg2)}
+.abt-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.abt-bignum{font-family:var(--fd);font-size:clamp(6rem,14vw,13rem);line-height:1;color:var(--border2);letter-spacing:-.02em}
+.abt-quote{font-family:var(--fs);font-size:clamp(1.5rem,2.8vw,2.4rem);line-height:1.35;color:var(--white);font-style:italic;font-weight:300;margin-top:-.5rem}
+.abt-quote::before{content:'\201C';font-family:var(--fs);font-size:7rem;line-height:.5;color:var(--border2);display:block;margin-bottom:.5rem}
+.abt-body{font-size:.88rem;line-height:1.95;color:var(--text2);font-weight:300;margin-bottom:1.2rem}
+.abt-stats{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;padding-top:3rem;border-top:1px solid var(--border)}
+.abt-stat-n{font-family:var(--fd);font-size:2.5rem;color:var(--white);line-height:1}
+.abt-stat-l{font-family:var(--fm);font-size:.55rem;letter-spacing:.25em;color:var(--text3);text-transform:uppercase;margin-top:3px}
+
+/* GALLERY PREVIEW */
+.gal{background:var(--bg)}
+.gal-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin-top:4rem}
+.gal-preview-item{background:var(--bg3);position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4}
+.gal-img-wrap{width:100%;height:100%;position:absolute;inset:0;overflow:hidden}
+.gal-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.gal-preview-item:hover .gal-img{transform:scale(1.06)}
+.gal-preview-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72) 0%,rgba(0,0,0,.08) 50%,transparent 100%);opacity:0;transition:opacity .35s;z-index:2}
+.gal-preview-item:hover::after{opacity:1}
+.gal-lbl{position:absolute;bottom:1.2rem;left:1.4rem;font-family:var(--fm);font-size:.58rem;letter-spacing:.28em;color:rgba(255,255,255,.92);text-transform:uppercase;z-index:3;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.gal-preview-item:hover .gal-lbl{opacity:1;transform:translateY(0)}
+.gal-view-all-wrap{display:flex;align-items:center;justify-content:space-between;margin-top:2.5rem;padding-top:2.5rem;border-top:1px solid var(--border)}
+.gal-count{font-family:var(--fm);font-size:.6rem;letter-spacing:.3em;color:var(--text3);text-transform:uppercase}
+.gal-view-all{display:inline-flex;align-items:center;gap:.8rem;font-family:var(--fm);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--white);text-decoration:none;border-bottom:1px solid var(--border2);padding-bottom:2px;transition:border-color .2s,color .2s}
+.gal-view-all:hover{color:var(--g100);border-color:var(--text2)}
+.gal-view-all svg{transition:transform .2s}
+.gal-view-all:hover svg{transform:translateX(4px)}
+
+/* REVIEWS */
+.rev{background:var(--bg2)}
+.rev-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem;gap:2rem;flex-wrap:wrap}
+.rev-score-n{font-family:var(--fd);font-size:5rem;color:var(--white);line-height:1}
+.rev-stars{display:flex;gap:4px;margin:7px 0;justify-content:flex-end}
+.star{width:13px;height:13px;color:var(--g100)}
+.rev-total{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;color:var(--text3);text-transform:uppercase;text-align:right}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.rev-card{background:var(--bg2);padding:2.5rem;transition:background .3s}
+.rev-card:hover{background:var(--bg3)}
+.rev-card-stars{display:flex;gap:3px;margin-bottom:1.2rem}
+.rev-text{font-family:var(--fs);font-size:1rem;font-style:italic;line-height:1.7;color:var(--text2);margin-bottom:1.4rem}
+.rev-author{font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase}
+
+/* BOOKING CTA */
+.cta{padding:10rem 4rem;background:var(--white);text-align:center;position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 80px,rgba(0,0,0,.018) 80px,rgba(0,0,0,.018) 81px)}
+.cta-eye{font-family:var(--fm);font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;color:var(--g600);margin-bottom:1.8rem;position:relative;z-index:1}
+.cta-title{font-family:var(--fd);font-size:clamp(4rem,11vw,11rem);line-height:.88;color:var(--bg);margin-bottom:3rem;position:relative;z-index:1}
+.cta-title em{font-family:var(--fs);font-style:italic;color:var(--g600)}
+.cta-btn{display:inline-flex;align-items:center;gap:.9rem;background:var(--bg);color:var(--white);font-family:var(--fm);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;text-decoration:none;padding:1.15rem 2.8rem;transition:background .2s,transform .25s;position:relative;z-index:1}
+.cta-btn:hover{background:var(--g800);transform:translateY(-2px)}
+.cta-arrow{width:15px;height:15px;transition:transform .2s}
+.cta-btn:hover .cta-arrow{transform:translateX(4px)}
+
+/* CONTACT */
+.contact{background:var(--bg);padding:8rem 4rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4rem;border-top:1px solid var(--border);padding-top:4rem;margin-top:1rem}
+.con-lbl{font-family:var(--fm);font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--text3);margin-bottom:1.4rem}
+.con-body{font-family:var(--fs);font-size:1.1rem;line-height:1.75;color:var(--text2);font-weight:300}
+.con-body a{color:var(--text2);text-decoration:none;transition:color .2s}
+.con-body a:hover{color:var(--white)}
+.hrs{display:grid;grid-template-columns:auto 1fr;gap:.35rem 2rem;align-items:baseline}
+.hrs-day{font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:var(--text3);text-transform:uppercase}
+.hrs-time{font-family:var(--fm);font-size:.65rem;letter-spacing:.1em;color:var(--text2)}
+.map-link{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .2s;border-bottom:1px solid var(--border)}
+.map-link:hover{color:var(--text2)}
+
+/* FOOTER */
+footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.ft-logo{font-family:var(--fd);font-size:1.2rem;letter-spacing:.28em;color:var(--text3)}
+.ft-copy{font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;color:var(--text3);text-transform:uppercase}
+.ft-links{display:flex;gap:2.5rem;list-style:none}
+.ft-links a{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--text2)}
+
+/* STAR SVG */
+.star-svg{fill:currentColor}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.5rem 1.8rem}
+  nav.scrolled{padding:1rem 1.8rem}
+  .nav-links,.nav-book{display:none}
+  .nav-ham{display:flex}
+  .hero{padding:0 1.8rem 4.5rem}
+  .hero-bottom{flex-direction:column;align-items:flex-start}
+  .hero-meta{text-align:left}
+  .hero-scroll{display:none}
+  .sec{padding:5rem 1.8rem}
+  .svc-grid{grid-template-columns:1fr}
+  .abt-grid{grid-template-columns:1fr;gap:2.5rem}
+  .abt-bignum{font-size:5rem}
+  .gal-preview{grid-template-columns:1fr}
+  .gal-preview-item{aspect-ratio:4/3}
+  .gal-view-all-wrap{flex-direction:column;align-items:flex-start;gap:1.2rem}
+  .rev-header{flex-direction:column;align-items:flex-start}
+  .rev-stars,.rev-total{justify-content:flex-start;text-align:left}
+  .rev-grid{grid-template-columns:1fr}
+  .cta{padding:6rem 1.8rem}
+  .contact{padding:5rem 1.8rem}
+  .contact-grid{grid-template-columns:1fr;gap:2.5rem}
+  footer{padding:2rem 1.8rem;flex-direction:column;align-items:flex-start;gap:1.2rem}
+  .mob-close{right:2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="pre">
+  <div class="pre-inner">
+    <div class="pre-text">
+      <span>C</span><span>R</span><span>O</span><span>W</span><span>N</span><span>&thinsp;</span><span>C</span><span>U</span><span>T</span>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">Close ✕</button>
+  <a href="#services" onclick="closeMob()">Services</a>
+  <a href="#about" onclick="closeMob()">About</a>
+  <a href="gallery.html" onclick="closeMob()">Gallery</a>
+  <a href="#reviews" onclick="closeMob()">Reviews</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="https://crowncut.booksy.com" target="_blank" onclick="closeMob()">Book Now →</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-main">Crown Cut</span>
+    <span class="nav-logo-sub">Edinburgh · Gilmore Place</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://crowncut.booksy.com" target="_blank" class="nav-book">Book Now</a>
+  <button class="nav-ham" onclick="openMob()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <p class="hero-eyebrow">Edinburgh's Premier Barbershop — Since 2018</p>
+  <h1 class="hero-title">
+    <span class="htl"><span>Crown</span></span>
+    <span class="htl"><span>Cut.</span></span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Where precision meets craft. Every cut a statement, every visit an experience worth returning for.</p>
+    <div class="hero-meta">
+      <div class="hero-rating-num">4.8</div>
+      <div class="hero-rating-sub">★★★★★ · 70 Google Reviews</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-track">
+    <span class="mq-item">Precision Cuts</span>
+    <span class="mq-item">Skin Fades</span>
+    <span class="mq-item">Beard Crafting</span>
+    <span class="mq-item">Hot Towel Shave</span>
+    <span class="mq-item">Edinburgh EH3</span>
+    <span class="mq-item">119 Gilmore Place</span>
+    <span class="mq-item">4.8 ★ Rating</span>
+    <span class="mq-item">Book on Booksy</span>
+    <span class="mq-item">Precision Cuts</span>
+    <span class="mq-item">Skin Fades</span>
+    <span class="mq-item">Beard Crafting</span>
+    <span class="mq-item">Hot Towel Shave</span>
+    <span class="mq-item">Edinburgh EH3</span>
+    <span class="mq-item">119 Gilmore Place</span>
+    <span class="mq-item">4.8 ★ Rating</span>
+    <span class="mq-item">Book on Booksy</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec svc" id="services">
+  <div class="sec-label rv">Services</div>
+  <h2 class="sec-h rv">The <em>craft</em><br>of a cut.</h2>
+  <div class="svc-grid">
+    <div class="svc-card rv">
+      <div class="svc-num">01</div>
+      <div class="svc-name">Classic Cut</div>
+      <p class="svc-desc">A timeless scissor cut shaped to complement your features. From consultation to final mirror check — unhurried, precise, personal.</p>
+      <div class="svc-price">from £22</div>
+    </div>
+    <div class="svc-card rv d1">
+      <div class="svc-num">02</div>
+      <div class="svc-name">Skin Fade</div>
+      <p class="svc-desc">Seamless gradients from skin to length, executed with clipper mastery and a relentless eye for clean lines that hold their shape.</p>
+      <div class="svc-price">from £25</div>
+    </div>
+    <div class="svc-card rv">
+      <div class="svc-num">03</div>
+      <div class="svc-name">Beard Trim & Shape</div>
+      <p class="svc-desc">Define your edges. Whether a sharp contour or a natural groom, we sculpt to frame your face with intention and precision.</p>
+      <div class="svc-price">from £12</div>
+    </div>
+    <div class="svc-card rv d1">
+      <div class="svc-num">04</div>
+      <div class="svc-name">Cut & Beard</div>
+      <p class="svc-desc">The complete Crown Cut experience. Hair and beard aligned in a single seamless appointment — the full transformation.</p>
+      <div class="svc-price">from £34</div>
+    </div>
+    <div class="svc-card rv">
+      <div class="svc-num">05</div>
+      <div class="svc-name">Hot Towel Shave</div>
+      <p class="svc-desc">Traditional straight razor barbering. Hot towel prep, premium lather, one clean pass. A ritual made modern.</p>
+      <div class="svc-price">from £28</div>
+    </div>
+    <div class="svc-card rv d1">
+      <div class="svc-num">06</div>
+      <div class="svc-name">Junior Cut</div>
+      <p class="svc-desc">Patient, skilled barbering for younger clients. We take time to ensure every child leaves looking sharp and feeling confident.</p>
+      <div class="svc-price">from £14</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec abt" id="about">
+  <div class="abt-grid">
+    <div>
+      <div class="abt-bignum rv">4.8</div>
+      <blockquote class="abt-quote rv d1">Not just a haircut.<br>A craft honed over<br>years of practice.</blockquote>
+    </div>
+    <div>
+      <div class="sec-label rv">About Crown Cut</div>
+      <p class="abt-body rv d1">Situated in the heart of Gilmore Place, Crown Cut is built on the belief that a great haircut is one of life's non-negotiable pleasures. We blend traditional barbering technique with contemporary style — because you deserve both.</p>
+      <p class="abt-body rv d2">Every client who walks through our door receives the same level of attention. We take time to understand what you want, advise on what'll suit you, and deliver a result you'll notice every time you look in the mirror.</p>
+      <div class="abt-stats rv d3">
+        <div><div class="abt-stat-n">4.8</div><div class="abt-stat-l">Google Rating</div></div>
+        <div><div class="abt-stat-n">70+</div><div class="abt-stat-l">Reviews</div></div>
+        <div><div class="abt-stat-n">6</div><div class="abt-stat-l">Days a Week</div></div>
+        <div><div class="abt-stat-n">EH3</div><div class="abt-stat-l">Edinburgh</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY PREVIEW -->
+<section class="sec gal" id="gallery">
+  <div class="sec-label rv">Gallery</div>
+  <h2 class="sec-h rv">The work<br>speaks <em>for itself.</em></h2>
+  <div class="gal-preview rv">
+    <div class="gal-preview-item">
+      <div class="gal-img-wrap">
+        <img class="gal-img" src="images/image-1.jpeg" alt="Skin Fade — Crown Cut Edinburgh">
+      </div>
+      <span class="gal-lbl">Skin Fade</span>
+    </div>
+    <div class="gal-preview-item">
+      <div class="gal-img-wrap">
+        <img class="gal-img" src="images/image-5.jpeg" alt="Crop & Fade — Crown Cut Edinburgh">
+      </div>
+      <span class="gal-lbl">Crop & Fade</span>
+    </div>
+    <div class="gal-preview-item">
+      <div class="gal-img-wrap">
+        <img class="gal-img" src="images/image-3.jpeg" alt="Textured Crop — Crown Cut Edinburgh">
+      </div>
+      <span class="gal-lbl">Textured Crop</span>
+    </div>
+  </div>
+  <div class="gal-view-all-wrap rv d1">
+    <span class="gal-count">Showing 3 of 7 photos</span>
+    <a href="gallery.html" class="gal-view-all">
+      View Full Gallery
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec rev" id="reviews">
+  <div class="rev-header">
+    <div>
+      <div class="sec-label rv">Client Reviews</div>
+      <h2 class="sec-h rv">What they<br>say <em>about us.</em></h2>
+    </div>
+    <div class="rv">
+      <div class="rev-score-n">4.8</div>
+      <div class="rev-stars">
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="rev-total">Based on 70 Google Reviews</div>
+    </div>
+  </div>
+  <div class="rev-grid">
+    <div class="rev-card rv">
+      <div class="rev-card-stars">
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="rev-text">"Best barber I've been to in Edinburgh by far. Walked in knowing what I wanted, walked out with something even better. The attention to detail is unmatched."</p>
+      <div class="rev-author">— James R.</div>
+    </div>
+    <div class="rev-card rv d1">
+      <div class="rev-card-stars">
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="rev-text">"Incredible vibe. The barber took his time, had a proper conversation, and delivered exactly what I asked for. Genuinely one of the best cuts I've ever had."</p>
+      <div class="rev-author">— Daniel M.</div>
+    </div>
+    <div class="rev-card rv d2">
+      <div class="rev-card-stars">
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="star" viewBox="0 0 20 20"><path class="star-svg" d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="rev-text">"Found Crown Cut after searching for a proper barber in EH3. This is it. Consistent every single time, and the Booksy booking makes it effortless to get an appointment."</p>
+      <div class="rev-author">— Ewan S.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING CTA -->
+<section class="cta" id="book">
+  <div class="cta-bg"></div>
+  <p class="cta-eye rv">Ready when you are</p>
+  <h2 class="cta-title rv">Book<br>your <em>cut.</em></h2>
+  <a href="https://crowncut.booksy.com" target="_blank" class="cta-btn rv d1">
+    Book Online Now
+    <svg class="cta-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+  </a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="sec-label rv">Find Us</div>
+  <div class="contact-grid">
+    <div class="rv">
+      <div class="con-lbl">Location</div>
+      <div class="con-body">
+        119 Gilmore Place<br>Edinburgh, EH3 9PP
+        <br>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=119+Gilmore+Place+Edinburgh+EH3+9PP" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          Get Directions
+        </a>
+      </div>
+    </div>
+    <div class="rv d1">
+      <div class="con-lbl">Get in Touch</div>
+      <div class="con-body">
+        <a href="tel:01316297377">0131 629 7377</a><br><br>
+        <a href="https://crowncut.booksy.com" target="_blank">crowncut.booksy.com</a>
+      </div>
+    </div>
+    <div class="rv d2">
+      <div class="con-lbl">Opening Hours</div>
+      <div class="hrs">
+        <span class="hrs-day">Mon</span><span class="hrs-time">9:00 – 18:00</span>
+        <span class="hrs-day">Tue</span><span class="hrs-time">9:00 – 18:00</span>
+        <span class="hrs-day">Wed</span><span class="hrs-time">9:00 – 18:00</span>
+        <span class="hrs-day">Thu</span><span class="hrs-time">9:00 – 18:00</span>
+        <span class="hrs-day">Fri</span><span class="hrs-time">9:00 – 18:00</span>
+        <span class="hrs-day">Sat</span><span class="hrs-time">8:30 – 17:00</span>
+        <span class="hrs-day">Sun</span><span class="hrs-time">Closed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-logo">Crown Cut</div>
+  <p class="ft-copy">© 2025 Crown Cut Edinburgh</p>
+  <ul class="ft-links">
+    <li><a href="https://crowncut.booksy.com" target="_blank">Book</a></li>
+    <li><a href="tel:01316297377">Call</a></li>
+    <li><a href="https://www.google.com/maps/search/?api=1&query=119+Gilmore+Place+Edinburgh+EH3+9PP" target="_blank">Map</a></li>
+  </ul>
+</footer>
+
+<script>
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('pre').classList.add('gone');
+    document.body.classList.add('loaded');
+  }, 1300);
+});
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+function openMob() { document.getElementById('mobMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); document.body.style.overflow = ''; }
+</script>
+</body>
+</html>
