@@ -64,14 +64,14 @@ nav.scrolled{padding:1.1rem 4rem;background:rgba(10,10,10,.92);backdrop-filter:b
 .page-note{font-family:var(--fm);font-size:.55rem;letter-spacing:.25em;color:var(--text3);text-transform:uppercase;margin-top:1.5rem}
 
 /* PRICING SECTION */
-.pricing-section{padding:0 5rem 10rem}
+.pricing-section{padding:0 0 10rem}
 
 /* Category block */
 .price-cat{
   display:grid;
   grid-template-columns:280px 1fr;
   gap:6rem;
-  padding:6rem 0;
+  padding:6rem 4rem;
   border-bottom:1px solid var(--border);
   align-items:start;
   position:relative;
@@ -264,8 +264,8 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
   .nav-links,.nav-book{display:none}
   .nav-ham{display:flex}
   .page-header-content{padding:0 1.8rem 4rem}
-  .pricing-section{padding:0 1.8rem 5rem}
-  .price-cat{grid-template-columns:1fr;gap:2rem;padding:4rem 0}
+  .pricing-section{padding:0 0 5rem}
+  .price-cat{grid-template-columns:1fr;gap:2rem;padding:4rem 1.8rem}
   .price-cat-header{position:static}
   .price-cat-num{font-size:5rem;margin-bottom:.4rem}
   .price-row-top{flex-wrap:wrap}
@@ -347,7 +347,7 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
 <section class="pricing-section">
 
   <!-- Haircuts -->
-  <div class="price-cat rv">
+  <div class="price-cat rv" id="cat-haircuts">
     <div class="price-cat-header">
       <span class="price-cat-num">01</span>
       <div class="price-cat-label">Category</div>
@@ -432,7 +432,7 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
   </div>
 
   <!-- Skin Fades -->
-  <div class="price-cat rv">
+  <div class="price-cat rv" id="cat-skin-fades">
     <div class="price-cat-header">
       <span class="price-cat-num">02</span>
       <div class="price-cat-label">Category</div>
@@ -469,7 +469,7 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
   </div>
 
   <!-- Beard -->
-  <div class="price-cat rv">
+  <div class="price-cat rv" id="cat-beard">
     <div class="price-cat-header">
       <span class="price-cat-num">03</span>
       <div class="price-cat-label">Category</div>
@@ -506,7 +506,7 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
   </div>
 
   <!-- Combinations -->
-  <div class="price-cat rv">
+  <div class="price-cat rv" id="cat-combo">
     <div class="price-cat-header">
       <span class="price-cat-num">04</span>
       <div class="price-cat-label">Category</div>
@@ -579,7 +579,7 @@ footer{background:var(--bg2);padding:2.8rem 4rem;border-top:1px solid var(--bord
   </div>
 
   <!-- Hot Shave -->
-  <div class="price-cat rv">
+  <div class="price-cat rv" id="cat-hot-shave">
     <div class="price-cat-header">
       <span class="price-cat-num">05</span>
       <div class="price-cat-label">Category</div>
